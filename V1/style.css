@@ -1,9 +1,11 @@
-#btnp:hover{
-    background-color: azure;
+#btnp:hover {
+    background-color: #9E9E9E;
+    border-color: #9E9E9E;
     color: black;
 }
 
 #btnp {
-    background-color: black;
-    border: solid 2px black;
+    background-color: #616161;
+    border: solid 2px #616161;
+    outline: 0;
 }
