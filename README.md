@@ -18,6 +18,8 @@ La première équipe qui a perdu tous ses hélicoptères a perdu la partie.
 
 On pourra éventuellement ajouter d’autres fonctionnalités : gestion du carburant pour limiter les déplacements, différents hélicoptères avec des statistiques différents (résistance, précision, taille, carburant…), ou des objectifs différents (vaincre un hélicoptère “roi”, atteindre un territoire précis…).
 
- 
 
-
+3 version :
+    1. salon joignable, affichage de salon public (et autres apres reflection) Dev: Alexis, Jordan; Tests: Antoine.
+    2. jeu jouable en php (integralement) Dev: Alexis, Antoine; Tests: Jordan.
+    3. convertion en javascript, utilisation d'API... (pas optionnel mais pas obligatoire non plus) Dev: Antoine, Jordan; Tests: Alexis.
