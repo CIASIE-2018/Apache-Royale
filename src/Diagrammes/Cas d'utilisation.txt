@@ -1,0 +1,11 @@
+Afficher tout les salons (avec et sans MDP)
+Créer un salon
+    -Public
+    -Public(MDP)
+    -Privé(cacher)
+Rejoindre un salon
+    -Public
+    -Public(MDP)
+    -Avec ID
+
+    1 classe salon
