@@ -1,11 +1,12 @@
 #btnp:hover {
-    background-color: #9E9E9E;
-    border-color: #9E9E9E;
+    background-color: #b7a39c;
+    border-color: black;
     color: black;
+    box-shadow: none;
 }
 
 #btnp {
-    background-color: #616161;
+    background-color: #896e64;
     border: solid 2px #616161;
     outline: 0;
 }
