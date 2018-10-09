@@ -20,6 +20,11 @@
     transition: 0.3s;
 }
 
+.btlist:hover {
+    background-color: #BBBFDE;
+    color: black;
+}
+
 .select {
     margin: 32px 32px 32px 0;
     width: 50%;
@@ -28,11 +33,6 @@
     border: 1px solid black;
     color: black;
     padding: 8px;
-}
-
-.btlist:hover {
-    background-color: #BBBFDE;
-    color: black;
 }
 
 .round-top {
