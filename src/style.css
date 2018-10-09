@@ -10,3 +10,45 @@
     border: solid 2px #616161;
     outline: 0;
 }
+
+.btlist {
+    background-color: #777FBD;
+    border: 1px solid black;
+    margin-bottom: 2px;
+    opacity: 0.7;
+    outline: 0;
+    transition: 0.3s;
+}
+
+.btlist:hover {
+    background-color: #BBBFDE;
+    color: black;
+}
+
+.select {
+    margin: 32px 32px 32px 0;
+    width: 50%;
+    background-color: #7E7F87;
+    opacity: 0.7;
+    border: 1px solid black;
+    color: black;
+    padding: 8px;
+}
+
+.round-top {
+    border-radius: 8px 8px 0 0;
+}
+
+.elem {
+    width: 100%; 
+    display: block
+}
+
+.salon-container {
+    padding: 32px;
+    max-height: 100vh;
+    max-width: 50%;
+    overflow: scroll;
+    flex-direction: row;
+    flex-basis: 50%;
+}
