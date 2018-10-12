@@ -23,3 +23,5 @@ On pourra éventuellement ajouter d’autres fonctionnalités : gestion du carbu
     1. salon joignable, affichage de salon public (et autres apres reflection) Dev: Alexis, Jordan; Tests: Antoine.
     2. jeu jouable en php (integralement) Dev: Alexis, Antoine; Tests: Jordan.
     3. convertion en javascript, utilisation d'API... (pas optionnel mais pas obligatoire non plus) Dev: Antoine, Jordan; Tests: Alexis.
+
+Diagramme de classes : https://www.lucidchart.com/invitations/accept/648f2497-0958-46fb-a6a5-98080d754c0b 
