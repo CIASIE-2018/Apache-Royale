@@ -48,6 +48,39 @@ class Helicoptere {
                     $this->$x-=$distance;
                 }
             break;
+            default:
+            //?
+            break;
+            //à compléter pour les diagonales
+        }
+    }
+
+    function seReorienter($angle){
+        $this->$direction+=$angle;
+    }
+
+    function prendreDegats(){
+        if($this->$z > 0) {
+            $this->$z-=1;
+        }
+    }
+
+    function estMort(){
+        if($this->$z == 0) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    function attaquer($cible){
+        //chance de toucher : différence de niveau + distance
+        $proba = ($this->$z - $cible->$z) + abs($this->$x - $cible->$x) + abs($this->$y - $cible->$y); 
+        $jet = rand(1,6);
+        if($jet > $proba){
+            return true;
+        }else{
+            return false;
         }
     }
 
