@@ -2,6 +2,7 @@
 require_once 'vendor/autoload.php';
 
 session_start();
+
 $app = new \Slim\Slim();
 
 $loader = new Twig_Loader_Filesystem('src/Twig');
@@ -13,12 +14,12 @@ $app->get('/',function () use ($twig, $app){
     $g = new \apache\Controler\ControlerGeneral();
     $g->showIndex();
     */
-
+    echo $_COOKIE["PHPSESSID"];
     echo $twig->render('index.html', array('join' => $app->urlFor('join')));
 })->name('home');
 
 $app->post('/',function () {
-    
+    echo "sdnfkn";
 })->name('homeP');
 
 $app->get('/join',function () use ($twig){
