@@ -2,11 +2,11 @@
 
 namespace apache\Views;
 
-$app=new \Slim\Slim;
-$join = $app->urlFor('join');
-
 class IndexView {
     public function render() {
+        $app=new \Slim\Slim();
+        $app=$app::getInstance();
+        $join = $app->urlFor("join");
         $return = <<<END
      <div class="bgimg w3-display-container w3-animate-opacity w3-text-white w3-myfont">
         <div class="w3-display-middle w3-center">

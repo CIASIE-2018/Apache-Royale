@@ -2,7 +2,7 @@
   "name": "Apache-Royale",
   "require": {
     "php": ">=7.0",
-    "slim/slim": "2",
+    "slim/slim": "2.*",
     "illuminate/database": "^5.4"
   },
   "autoload": {
