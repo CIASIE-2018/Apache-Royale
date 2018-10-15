@@ -201,6 +201,6 @@ $RECYCLE.BIN/
 *.lnk
 /vendor/
 composer.lock
-/Service/config.ini
+src/Service/config.ini
 # End of https://www.gitignore.io/api/linux,macos,windows,webstorm,phpstorm,visualstudiocode
 
