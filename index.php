@@ -18,4 +18,9 @@ $app->get('/join',function () {
     $g->showList();
 })->name("join");
 
+$app->get('/salon',function () {
+    $g = new \apache\Controler\ControlerGeneral();
+    $g->showGame();
+})->name("salon");
+
 $app->run();
