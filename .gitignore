@@ -199,7 +199,6 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
-
 /vendor/
 composer.lock
 
