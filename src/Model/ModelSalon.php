@@ -15,6 +15,7 @@ class ModelSalon extends \Illuminate\Database\Eloquent\Model
         $room->private = $private;
 
         $room->save();
+        echo($room->id);
     }
     
     static function getSalon($id){

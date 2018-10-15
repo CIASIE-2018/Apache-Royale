@@ -10,7 +10,8 @@ $app->get('/',function () {
 })->name('home');
 
 $app->post('/',function () {
-    
+    $g = new \apache\Controller\ControllerSalon();
+    $g->creerSalon($_POST["name"],$_POST["pass"],$_POST["private"]);
 })->name('homeP');
 
 $app->get('/join',function () {
@@ -19,8 +20,7 @@ $app->get('/join',function () {
 })->name("join");
 
 $app->get('/salon',function(){
-    $g = new \apache\Controller\ControllerSalon();
-    $g->creerSalon($_POST["name"],$_POST["pass"],false);
+    
 })->name("salon");
 
 $app->run();

@@ -3,13 +3,14 @@ namespace apache\Controller;
 use apache\Views\SalonView;
 
 class ControllerSalon{
+
+    private $salon;
     function creerSalon($name,$pass,$private){
-        $v = new SalonView(0,$name,$pass,$private);
-        echo $v->render();
+     $this->salon=ModelSalon::CreateRoom($nom,$mdp,$private);;
+       
     }
 
     function rejoindreSalon($id){
-        $v = new SalonView($id);
-        echo $v->render();
+        $this->salon=ModelSalon::getSalon($i);
     }
 }
