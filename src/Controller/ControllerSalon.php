@@ -3,8 +3,8 @@ namespace apache\Controller;
 use apache\Views\SalonView;
 
 class ControllerSalon{
-    function creerSalon(){
-        $v = new SalonView(0);
+    function creerSalon($name,$pass,$private){
+        $v = new SalonView(0,$name,$pass,$private);
         echo $v->render();
     }
 

@@ -13,7 +13,4 @@ class SalonView{
         }
     }
 
-    public function render(){
-        
-    }
 }

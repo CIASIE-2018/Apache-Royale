@@ -20,8 +20,8 @@ class ModelSalon extends \Illuminate\Database\Eloquent\Model
     static function getSalon($id){
         $salons=ModelSalon::get();
         foreach($salons as $salon){
-            if($item->id == $id)
-                $arr = $item;
+            if($salon->id == $id)
+                $arr = $salon;
         }
         return $arr;
     }
