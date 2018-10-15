@@ -48,10 +48,58 @@ class Helicoptere {
                     $this->$x-=$distance;
                 }
             break;
-            default:
-            //?
+            //si diagonale haut droite avance y et x
+            case 45:
+                //il faut vérifier si on peut avancer àchaque fois
+                $resDistance=$distance;
+                while($distance>0){
+                    if(($this->$x<20)&&($this->$y<12)){
+                        $this->$x+=1;
+                        $this->$y+=1;
+                    }
+                    $distance-=1;
+                }
             break;
-            //à compléter pour les diagonales
+            //si diagonale bas droite recule y et avance x
+            case 135:
+                //il faut vérifier si on peut avancer àchaque fois
+                $resDistance=$distance;
+                while($distance>0){
+                    if(($this->$x<20)&&($this->$y>0)){
+                        $this->$x+=1;
+                        $this->$y-=1;
+                    }
+                    $distance-=1;
+                }
+            break;
+            //si diagonale bas gauche recule y et x
+            case 225:
+                //il faut vérifier si on peut avancer àchaque fois
+                $resDistance=$distance;
+                while($distance>0){
+                    if(($this->$x>0)&&($this->$y>0)){
+                        $this->$x-=1;
+                        $this->$y-=1;
+                    }
+                    $distance-=1;
+                }
+            break;
+            //si diagonale haut gauche avance y et recule x
+            case 315:
+                //il faut vérifier si on peut avancer àchaque fois
+                $resDistance=$distance;
+                while($distance>0){
+                    if(($this->$x>0)&&($this->$y<12)){
+                        $this->$x-=1;
+                        $this->$y+=1;
+                    }
+                    $distance-=1;
+                }
+            break;
+            default:
+            //tant pis
+            printf("Erreur, angle non valable (très content)");
+            break;
         }
     }
 
