@@ -26,10 +26,10 @@ class IndexView {
             <h2>Créer votre salon</h2>
           </header>
           <div class="w3-container">
-            <form style="font-size:1.5em">
+            <form style="font-size:1.5em" method="post">
               <label style="">Name</label>
-              <input class="w3-input w3-border w3-round-xxlarge" style="outline: 0;" type="text">
-              <label style="">Password </label><input class="w3-check" type="checkbox"><input class="w3-input w3-border w3-round-xxlarge"
+              <input class="w3-input w3-border w3-round-xxlarge" name="name" style="outline: 0;" type="text">
+              <label style="">Password </label><input class="w3-check" type="checkbox"><input name="pass" class="w3-input w3-border w3-round-xxlarge"
                 type="password" type="text" style="outline: 0; border-color: blue">
               <label style="">Salon privé ? </label><input class="w3-check" type="checkbox">
               <input type="submit" class="w3-btn" style="width:100%; font-size: 1.5em; margin: 10px 0">
