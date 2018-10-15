@@ -1,8 +1,8 @@
 <?php
 
-namespace apache\Controler;
+namespace apache\Controller;
 
-class ControlerGeneral
+class ControllerGeneral
 {
     public function showIndex()
     {

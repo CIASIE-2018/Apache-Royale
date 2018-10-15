@@ -16,4 +16,13 @@ class ModelSalon extends \Illuminate\Database\Eloquent\Model
 
         $room->save();
     }
+    
+    static function getSalon($id){
+        $salons=ModelSalon::get();
+        foreach($salons as $salon){
+            if($item->id == $id)
+                $arr = $item;
+        }
+        return $arr;
+    }
 }
