@@ -1,12 +1,17 @@
 <?php
 
+namespace apache\Views;
+
 class GlobalView
 {
     public function render($sel)
     {
         switch ($sel) {
             case 0:
-                $s = (new IndexView())->render();
+                $s = (new \apache\Views\IndexView())->render();
+                break;
+            case 1:
+                $s = (new \apache\Views\ListView())->render();
                 break;
         }
         return $this->insertHtml($s);

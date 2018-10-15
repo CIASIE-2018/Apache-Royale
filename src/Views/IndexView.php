@@ -1,5 +1,10 @@
 <?php
 
+namespace apache\Views;
+
+$app=new \Slim\Slim;
+$join = $app->urlFor('join');
+
 class IndexView {
     public function render() {
         $return = <<<END
@@ -10,7 +15,7 @@ class IndexView {
           <hr class="w3-border-grey" style="margin:auto;width:55%">
           <button onclick="document.getElementById('id01').style.display='block'" class="w3-btn w3-round-xxlarge w3-padding-large w3-margin-top w3-wide w3-xlarge"
             style="width : 40%;" id="btnp">Créer</button>
-          <a class="w3-btn w3-round-xxlarge w3-padding-large w3-margin-top w3-wide w3-xlarge" style="width : 40%;" id="btnp" href="list.html">Rejoindre</a>
+          <a class="w3-btn w3-round-xxlarge w3-padding-large w3-margin-top w3-wide w3-xlarge" style="width : 40%;" id="btnp" href="$join">Rejoindre</a>
         </div>
       </div>
     
