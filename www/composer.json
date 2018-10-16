@@ -1,0 +1,23 @@
+{
+  "name": "Apache-Royale",
+  "require": {
+    "php": ">=7.0",
+    "slim/slim": "2.*",
+    "illuminate/database": "^5.4",
+    "twig/twig": "^2.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "apache\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Alexis Charlot",
+      "email": "alexis.charlot5@etu.univ-lorraine.fr"
+    }
+  ],
+  "require-dev": {
+    "phpunit/phpunit": "^6.5"
+  }
+}

@@ -1,0 +1,63 @@
+<?php
+
+namespace apache\Views;
+
+class GlobalView
+{
+    public function render($sel)
+    {
+        switch ($sel) {
+            case 0:
+                $s = (new \apache\Views\IndexView())->render();
+                break;
+            case 1:
+                $s = (new \apache\Views\ListView())->render();
+                break;
+            case 2:
+                $s = (new \apache\Views\GameView())->render();
+                break;
+        }
+        return $this->insertHtml($s);
+    }
+
+    public function insertHtml($str)
+    {
+        return <<<END
+        <!DOCTYPE html>
+        <html>
+        <title>Apache Royale</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+        <link rel="stylesheet" href="css/style.css">
+        <link href="https://fonts.googleapis.com/css?family=Play" rel="stylesheet">
+        <style>
+        body,
+        h1 {
+            font-family: 'Play', sans-serif;
+        }
+
+        body,
+        html {
+            height: 100%
+        }
+
+        .bgimg {
+            background-image: url('https://trello-backgrounds.s3.amazonaws.com/57c3e8ca317e319745dbcb88/4032x3024/8d6e8d079cc0b1d0e3b02680530e387e/IMG_1163.JPG');
+            min-height: 100%;
+            background-position: center;
+            background-size: cover;
+        }
+        </style>
+
+        <body>
+
+        $str
+
+        </body>
+
+        </html>
+END;
+    }
+}

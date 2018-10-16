@@ -1,0 +1,84 @@
+#btnp:hover {
+    background-color: #b7a39c;
+    border-color: black;
+    color: black;
+    box-shadow: none;
+}
+
+#btnp {
+    background-color: #896e64;
+    border: solid 2px #616161;
+    outline: 0;
+}
+
+.btlist {
+    background-color: #777FBD;
+    border: 1px solid black;
+    margin-bottom: 2px;
+    opacity: 0.7;
+    outline: 0;
+    transition: 0.3s;
+}
+
+.btlist:hover {
+    background-color: #BBBFDE;
+    color: black;
+}
+
+.select {
+    display: block;
+    margin: 32px;
+    background-color: #7E7F87;
+    opacity: 0.7;
+    border: 1px solid black;
+    color: black;
+    padding: 8px;
+}
+
+.round-top {
+    border-radius: 8px 8px 0 0;
+}
+
+.elem {
+    width: 100%;
+}
+
+.salon-container {
+    padding: 32px;
+    max-height: 75vh;
+    overflow: scroll;
+    flex-direction: row;
+    flex-basis: 50%;
+}
+
+.w3-row {
+    &>div {
+        opacity: 0.3;
+        background-color: black;
+        margin: 1px;
+        border-radius: 4px;
+        height: 4vw;
+        width: 4vw;
+    }
+}
+
+.prev {
+    border-radius: 16px 16px 0 0;
+    outline: 0;
+    width: 100%;
+    font-size: 1.5em;
+}
+
+.nav {
+    margin-right: 2%;
+}
+
+.nb {
+    font-size: 1.5em;
+}
+
+.next {
+    @extend .prev;
+    border-radius: 0 0 16px 16px;
+    top: 60%;
+}
