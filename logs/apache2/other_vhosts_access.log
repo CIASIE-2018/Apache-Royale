@@ -17,3 +17,6 @@ localhost:80 172.20.0.1 - - [16/Oct/2018:14:31:26 +0000] "GET / HTTP/1.1" 200 84
 localhost:80 172.20.0.1 - - [16/Oct/2018:14:31:26 +0000] "GET /assets/css/bulma.min.css HTTP/1.1" 200 22080 "http://localhost/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36"
 localhost:80 172.20.0.1 - - [16/Oct/2018:14:32:31 +0000] "-" 408 0 "-" "-"
 localhost:80 172.20.0.1 - - [16/Oct/2018:14:32:33 +0000] "-" 408 0 "-" "-"
+localhost:80 172.21.0.1 - - [16/Oct/2018:15:09:15 +0000] "GET / HTTP/1.1" 200 1537 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36"
+localhost:80 172.21.0.1 - - [16/Oct/2018:15:09:15 +0000] "GET /css/style.css HTTP/1.1" 200 827 "http://localhost/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36"
+localhost:80 172.21.0.1 - - [16/Oct/2018:15:09:15 +0000] "GET /css/w3.css HTTP/1.1" 200 5786 "http://localhost/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36"

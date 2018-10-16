@@ -25,3 +25,6 @@ On pourra éventuellement ajouter d’autres fonctionnalités : gestion du carbu
     3. convertion en javascript, utilisation d'API... (pas optionnel mais pas obligatoire non plus) Dev: Antoine, Jordan; Tests: Alexis.
 
 Diagramme de classes : https://www.lucidchart.com/invitations/accept/648f2497-0958-46fb-a6a5-98080d754c0b 
+
+Pour l'installation saisir en ligne de commande : docker-compose up -d
+puis rendez-vous sur la page http://localhost
