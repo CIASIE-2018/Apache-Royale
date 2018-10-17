@@ -53,51 +53,36 @@ class Helicoptere {
     }
 
     function moveStraight($axis,$distance,$limit,$direction){
-        if($direction=='up'){
-            if(($this->$axis+$distance)>=$limit){
-                $this->$axis=$limit;
-            }else{
-                $this->$axis+=$distance;
-            }
-        }else{
-            if(($this->$axis+$distance)<=$limit){
-                $this->$axis=$limit;
-            }else{
-                $this->$axis-=$distance;
+        for($i = 0;$i<$distance;$i++){
+            if( $this->canMove($direction,$axis,$limit) ) {
+                $this->moveOnce($direction,$axis,$limit);
             }
         }
     }
 
-    function moveDiagonally($distance,$limitX,$limitY,$directionX,$directionY){
-        
+    function moveDiagonally($distance,$limitX,$limitY,$directionX,$directionY){   
         for($i = 0;$i<$distance;$i++){
-            if($directionX=='up' && $directionY=='up'){
-                if(($this->$x<$limitX)&&($this->$y<$limitY)){
-                    $this->$x+=1;
-                    $this->$y+=1;
-                }
-            }
-            if($directionX=='up' && $directionY=='down'){
-                if(($this->$x<$limitX)&&($this->$y>$limitY)){
-                    $this->$x+=1;
-                    $this->$y-=1;
-                }
-            }
-            if($directionX=='down' && $directionY=='up'){
-                    if(($this->$x>$limitX)&&($this->$y<$limitY)){
-                        $this->$x-=1;
-                        $this->$y+=1;
-                    }
-                }
-            }
-            if($directionX=='down' && $directionY=='down'){
-                if(($this->$x>$limitX)&&($this->$y>$limitY)){
-                    $this->$x-=1;
-                    $this->$y-=1;
-                }
+            if( ($this->canMove($directionX,$x,$limitX)) && ($this->canMove($directionY,$y,$limitY)) ) {
+                $this->moveOnce($directionX,$x,$limitX);
+                $this->moveOnce($directionY,$y,$limitY);
             }
         }
+    }
 
+    function moveOnce($direction,$axis){
+        if($directionX=='up'){
+            $this->$axis+=1;
+        }else{
+            $this->$axis-=1;
+        }
+    }
+
+    function canMove($direction,$axis,$limit){
+        if($directionX=='up'){
+            return ($this->$axis < $limit);
+        }else{
+            return ($this->$axis > $limit);
+        }
     }
     
 
