@@ -13,7 +13,7 @@ class ModelSalon extends \Illuminate\Database\Eloquent\Model
         $room->name = $name;
         $room->pass = $pass;
         $room->private = $private;
-
+        $room->player1 = $_COOKIE["PHPSESSID"];
         $room->save();
         echo($room->id);
     }
