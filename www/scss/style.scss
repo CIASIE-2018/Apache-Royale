@@ -50,3 +50,35 @@
     flex-direction: row;
     flex-basis: 50%;
 }
+
+.w3-row {
+    &>div {
+        opacity: 0.3;
+        background-color: black;
+        margin: 1px;
+        border-radius: 4px;
+        height: 4vw;
+        width: 4vw;
+    }
+}
+
+.prev {
+    border-radius: 16px 16px 0 0;
+    outline: 0;
+    width: 100%;
+    font-size: 1.5em;
+}
+
+.nav {
+    margin-right: 2%;
+}
+
+.nb {
+    font-size: 1.5em;
+}
+
+.next {
+    @extend .prev;
+    border-radius: 0 0 16px 16px;
+    top: 60%;
+}

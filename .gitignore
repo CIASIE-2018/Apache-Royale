@@ -199,7 +199,16 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
-/vendor/
-composer.lock
+/www/vendor/
+/www/composer.lock
+
+/.env
+/.vscode
+/config/*
+/data/*
+/logs/*
+/www/**
+.DS_Store
 
 # End of https://www.gitignore.io/api/linux,macos,windows,webstorm,phpstorm,visualstudiocode
+

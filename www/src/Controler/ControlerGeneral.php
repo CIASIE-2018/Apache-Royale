@@ -15,4 +15,10 @@ class ControlerGeneral
         $i = new \apache\Views\GlobalView();
         echo $i->render(1);
     }
+
+    public function showGame()
+    {
+        $i = new \apache\Views\GlobalView();
+        echo $i->render(2);
+    }
 }
