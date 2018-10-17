@@ -28,48 +28,23 @@ class Helicoptere {
                 $this->moveStraight($y,$distance,0,'down');
             //si versla gauche recule en x
             case 270:
-                $this->moveStraight($y,$distance,0,'down');
+                $this->moveStraight($x,$distance,0,'down');
             break;
             //si diagonale haut droite avance y et x
             case 45:
-                //il faut vérifier si on peut avancer àchaque fois
-                while($distance>0){
-                    if(($this->$x<20)&&($this->$y<12)){
-                        $this->$x+=1;
-                        $this->$y+=1;
-                    }
-                    $distance-=1;
-                }
+                $this->moveDiagonally($distance,20,12,'up','up');
             break;
             //si diagonale bas droite recule y et avance x
             case 135:
-                while($distance>0){
-                    if(($this->$x<20)&&($this->$y>0)){
-                        $this->$x+=1;
-                        $this->$y-=1;
-                    }
-                    $distance-=1;
-                }
+                $this->moveDiagonally($distance,20,0,'up','down');
             break;
             //si diagonale bas gauche recule y et x
             case 225:
-                while($distance>0){
-                    if(($this->$x>0)&&($this->$y>0)){
-                        $this->$x-=1;
-                        $this->$y-=1;
-                    }
-                    $distance-=1;
-                }
+                $this->moveDiagonally($distance,0,0,'down','down');
             break;
             //si diagonale haut gauche avance y et recule x
             case 315:
-                while($distance>0){
-                    if(($this->$x>0)&&($this->$y<12)){
-                        $this->$x-=1;
-                        $this->$y+=1;
-                    }
-                    $distance-=1;
-                }
+                $this->moveDiagonally($distance,0,12,'down','up');
             break;
             default:
                 throw new Exception("L'angle ne correspond pas");
@@ -93,6 +68,39 @@ class Helicoptere {
         }
     }
 
+    function moveDiagonally($distance,$limitX,$limitY,$directionX,$directionY){
+        
+        for($i = 0;$i<$distance;$i++){
+            if($directionX=='up' && $directionY=='up'){
+                if(($this->$x<$limitX)&&($this->$y<$limitY)){
+                    $this->$x+=1;
+                    $this->$y+=1;
+                }
+            }
+            if($directionX=='up' && $directionY=='down'){
+                if(($this->$x<$limitX)&&($this->$y>$limitY)){
+                    $this->$x+=1;
+                    $this->$y-=1;
+                }
+            }
+            if($directionX=='down' && $directionY=='up'){
+                    if(($this->$x>$limitX)&&($this->$y<$limitY)){
+                        $this->$x-=1;
+                        $this->$y+=1;
+                    }
+                }
+            }
+            if($directionX=='down' && $directionY=='down'){
+                if(($this->$x>$limitX)&&($this->$y>$limitY)){
+                    $this->$x-=1;
+                    $this->$y-=1;
+                }
+            }
+        }
+
+    }
+    
+
     function changeDirection($angle){
         $this->$direction+=$angle;
     }
@@ -112,11 +120,7 @@ class Helicoptere {
         //chance de toucher : différence de niveau + distance
         $proba = ($this->$z - $target->$z) + abs($this->$x - $target->$x) + abs($this->$y - $target->$y); 
         $jet = rand(1,6);
-        if($jet > $proba){
-            return true;
-        }else{
-            return false;
-        }
+        return ($jet > $proba);
     }
 
 }
