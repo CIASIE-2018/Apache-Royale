@@ -26,4 +26,10 @@ class ModelSalon extends \Illuminate\Database\Eloquent\Model
         }
         return $arr;
     }
+
+    static function allSalon()
+    {
+        $salons=ModelSalon::all();
+        return $salons;
+    }
 }
