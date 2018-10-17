@@ -5,6 +5,7 @@ session_start();
 
 $app = new \Slim\Slim();
 
+\apache\Service\ConnectionFactory::connectORM();
 $loader = new Twig_Loader_Filesystem('src/Twig');
 $twig = new Twig_Environment($loader, array(
 ));
