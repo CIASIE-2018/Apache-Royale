@@ -8,10 +8,10 @@ class ModelSalon extends \Illuminate\Database\Eloquent\Model
     protected $primaryKey = 'id';
     public $timestamps =false;
 
-    static function createRoom($name,$mdp,$private){
-        $room = new ModelSalon();
+    static function createRoom($name,$pass,$private){
+        $room = new ModelSalon;
         $room->name = $name;
-        $room->pass = $mdp;
+        $room->pass = $pass;
         $room->private = $private;
 
         $room->save();

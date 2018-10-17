@@ -6,7 +6,10 @@ class ControllerSalon{
 
     private $salon;
     function creerSalon($name,$pass,$private){
-     $this->salon=\apache\Model\ModelSalon::CreateRoom($nom,$mdp,$private);;
+        if($private==null){
+            $private = false;
+        }
+     $this->salon=\apache\Model\ModelSalon::CreateRoom($name,$pass,$private);;
      
     }
 
