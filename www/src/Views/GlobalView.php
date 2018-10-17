@@ -13,6 +13,9 @@ class GlobalView
             case 1:
                 $s = (new \apache\Views\ListView())->render();
                 break;
+            case 2:
+                $s = (new \apache\Views\GameView())->render();
+                break;
         }
         return $this->insertHtml($s);
     }
