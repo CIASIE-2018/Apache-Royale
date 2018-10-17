@@ -1,5 +1,13 @@
 <?php
 
+namespace apache\Classes;
+
+class OutsideTheBoardException extends \Exception{}
+
+class AlreadyCrashedException extends \Exception{}
+
+class InvalidAngleException extends \Exception{}
+
 class Helicoptere {
 
     public $x,$y,$z;
@@ -7,28 +15,33 @@ class Helicoptere {
     public $direction;
 
     function __construct($posx,$posy) {
-        $this->$x=$posx;
-        $this->$y=$posy;
-        $this->$direction=0;
+        if($posx > 20 || $posx <0 || $posy > 12 || $posy <0){
+            throw new OutsideTheBoardException();
+        }
+        $this->x=$posx;
+        $this->y=$posy;
+        $this->z=3;
+        $this->direction=0;
     }
 
     function move($distance) {
-        $angle=($direction % 360);
+        $angle=($this->direction % 360);
         switch ($angle) {
             //si tout droit avance en y
             case 0:
-                $this->moveStraight($y,$distance,12,'up');
+                $this->moveStraight('y',$distance,12,'up');
             break;
             //si vers la droite avance en x
             case 90:
-                $this->moveStraight($x,$distance,20,'up');
+                $this->moveStraight('x',$distance,20,'up');
             break;
             //si vers le bas recule en y
             case 180:
-                $this->moveStraight($y,$distance,0,'down');
+                $this->moveStraight('y',$distance,0,'down');
+            break;
             //si versla gauche recule en x
             case 270:
-                $this->moveStraight($x,$distance,0,'down');
+                $this->moveStraight('x',$distance,0,'down');
             break;
             //si diagonale haut droite avance y et x
             case 45:
@@ -62,15 +75,15 @@ class Helicoptere {
 
     function moveDiagonally($distance,$limitX,$limitY,$directionX,$directionY){   
         for($i = 0;$i<$distance;$i++){
-            if( ($this->canMove($directionX,$x,$limitX)) && ($this->canMove($directionY,$y,$limitY)) ) {
-                $this->moveOnce($directionX,$x,$limitX);
-                $this->moveOnce($directionY,$y,$limitY);
+            if( ($this->canMove($directionX,'x',$limitX)) && ($this->canMove($directionY,'y',$limitY)) ) {
+                $this->moveOnce($directionX,'x',$limitX);
+                $this->moveOnce($directionY,'y',$limitY);
             }
         }
     }
 
     function moveOnce($direction,$axis){
-        if($directionX=='up'){
+        if($direction=='up'){
             $this->$axis+=1;
         }else{
             $this->$axis-=1;
@@ -78,34 +91,52 @@ class Helicoptere {
     }
 
     function canMove($direction,$axis,$limit){
-        if($directionX=='up'){
-            return ($this->$axis < $limit);
+        if($direction=='up'){
+            if($this->$axis >= $limit){
+                throw new OutsideTheBoardException();
+            }else{
+                return true;
+            }
         }else{
-            return ($this->$axis > $limit);
+            if($this->$axis <= $limit){
+                throw new OutsideTheBoardException();
+            }else{
+                return true;
+            }
         }
     }
     
 
     function changeDirection($angle){
-        $this->$direction+=$angle;
+        if($angle % 45 != 0){
+            throw new InvalidAngleException();
+        }
+        $this->direction+=$angle;
+        //positives for the switch
+        if($this->direction <0){
+            $this->direction+=360;
+        }
     }
 
     function takeDamage(){
-        if($this->$z <= 0) {
-            throw new Exception("Hélico déjà crash");
+        if($this->z <= 0) {
+            throw new AlreadyCrashedException();
         }
-        $this->$z-=1;
+        $this->z-=1;
     }
 
     function isDead(){
-        return $this->$z == 0 ;
+        return $this->z == 0 ;
     }
 
     function attack($target){
-        //chance de toucher : différence de niveau + distance
-        $proba = ($this->$z - $target->$z) + abs($this->$x - $target->$x) + abs($this->$y - $target->$y); 
         $jet = rand(1,6);
-        return ($jet > $proba);
+        return ($jet > $this->calculateOdds($target));
+    }
+
+    function calculateOdds($target){
+        //chance de toucher : différence de niveau + distance
+        return (($this->z - $target->z) + abs($this->x - $target->x) + abs($this->y - $target->y)); 
     }
 
 }
