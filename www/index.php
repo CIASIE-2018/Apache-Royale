@@ -5,6 +5,7 @@ session_start();
 
 $app = new \Slim\Slim();
 
+\apache\Service\ConnectionFactory::connectORM();
 $loader = new Twig_Loader_Filesystem('src/Twig');
 $twig = new Twig_Environment($loader, array(
 ));
@@ -19,12 +20,16 @@ $app->get('/',function () use ($twig, $app){
 })->name('home');
 
 $app->post('/',function () {
-    echo "sdnfkn";
+
+    $g = new \apache\Controller\ControllerSalon();
+    $g->creerSalon($_POST["name"],$_POST["pass"],$_POST["private"]);
 })->name('homeP');
+
 
 $app->get('/join',function () use ($twig){
     /*
     $g = new \apache\Controler\ControlerGeneral();
+
     $g->showList();
     */
 
