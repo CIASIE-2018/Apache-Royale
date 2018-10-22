@@ -18,7 +18,6 @@ class ControllerSalon{
     }
 
     function rejoindreSalon($id){
-        $app->redirect($app->urlFor('salon', array('id'=>$id)));
-        //$this->salon=\apache\Model\ModelSalon::getSalon($id);
+        $this->salon=\apache\Model\ModelSalon::JoinSalon($id);
     }
 }
