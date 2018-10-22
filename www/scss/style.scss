@@ -12,6 +12,10 @@
     outline: 0;
 }
 
+body {
+    background-color: #464857 !important;
+}
+
 .btlist {
     background-color: #777FBD;
     border: 1px solid black;
@@ -52,15 +56,25 @@
     width: 50vw;
 }
 
-.w3-row {
+.grille {
+    display: grid;
+    grid-auto-flow: column;
+    width: 50vw;
+    height: 50vw;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(12, 1fr);
     &>div {
-        opacity: 0.3;
-        background-color: black;
+        opacity: 0.7;
+        background-color: white;
+        border: 1px solid black;
         margin: 1px;
         border-radius: 4px;
-        height: 4vw;
-        width: 4vw;
     }
+}
+
+.helico {
+    width: 100%;
+    height: auto;
 }
 
 .prev {
