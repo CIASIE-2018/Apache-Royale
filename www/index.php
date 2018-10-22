@@ -23,6 +23,7 @@ $app->post('/',function () {
 
     $g = new \apache\Controller\ControllerSalon();
     $g->creerSalon($_POST["name"],$_POST["pass"],$_POST["private"]);
+    var_dump($g);
 })->name('homeP');
 
 
