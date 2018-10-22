@@ -14,14 +14,14 @@ class Helicoptere {
     //direction we're facing
     public $direction;
 
-    function __construct($posx,$posy) {
+    function __construct($posx,$posy,$direction) {
         if($posx > 20 || $posx <0 || $posy > 12 || $posy <0){
             throw new OutsideTheBoardException();
         }
         $this->x=$posx;
         $this->y=$posy;
         $this->z=3;
-        $this->direction=0;
+        $this->direction=$direction;
     }
 
     function move($distance) {

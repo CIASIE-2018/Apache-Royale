@@ -8,6 +8,8 @@ class TooLargeAngleException extends \Exception{}
 
 class InvalidDistanceException extends \Exception{}
 
+class TargetNotInRangeException extends \Exception{}
+
 class Player {
 
     public $id;
@@ -20,9 +22,9 @@ class Player {
         $this->game->addPlayer($this);
         //si joueur 1 helico initialise en bas, sinon en haut du plateau
         if($this->game->isPlayer1($this)){
-            $this->helicopteres=[new Helicoptere(5,0),new Helicoptere(10,0),new Helicoptere(15,0)];
+            $this->helicopteres=[new Helicoptere(5,0,0),new Helicoptere(10,0,0),new Helicoptere(15,0,0)];
         }else{
-            $this->helicopteres=[new Helicoptere(5,12),new Helicoptere(10,12),new Helicoptere(15,12)];
+            $this->helicopteres=[new Helicoptere(5,12,180),new Helicoptere(10,12,180),new Helicoptere(15,12,180)];
         }
     }
 
@@ -42,6 +44,12 @@ class Player {
         $this->helicopteres[0]->move($distanceH1);
         $this->helicopteres[1]->move($distanceH2);
         $this->helicopteres[2]->move($distanceH3);
+    }
+
+    function chooseTargets($targetH1,$targetH2,$targetH3){
+        if(false){
+            throw new TargetNotInRangeException();
+        }
     }
 
 }

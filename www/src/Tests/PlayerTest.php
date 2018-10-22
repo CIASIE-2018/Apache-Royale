@@ -16,14 +16,14 @@ final class PlayerTest extends PHPUnit_Framework_TestCase{
         $this->assertEquals(1,$player->id);
         $this->assertEquals($game,$player->game);
         //check helicopters positions for player 1
-        $this->assertEquals(new Helicoptere(5,0),$player->helicopteres[0]);
-        $this->assertEquals(new Helicoptere(10,0),$player->helicopteres[1]);
-        $this->assertEquals(new Helicoptere(15,0),$player->helicopteres[2]);
+        $this->assertEquals(new Helicoptere(5,0,0),$player->helicopteres[0]);
+        $this->assertEquals(new Helicoptere(10,0,0),$player->helicopteres[1]);
+        $this->assertEquals(new Helicoptere(15,0,0),$player->helicopteres[2]);
         //check helicopters positions for player 2
         $player2 = new Player($game,2);
-        $this->assertEquals(new Helicoptere(5,12),$player2->helicopteres[0]);
-        $this->assertEquals(new Helicoptere(10,12),$player2->helicopteres[1]);
-        $this->assertEquals(new Helicoptere(15,12),$player2->helicopteres[2]);
+        $this->assertEquals(new Helicoptere(5,12,180),$player2->helicopteres[0]);
+        $this->assertEquals(new Helicoptere(10,12,180),$player2->helicopteres[1]);
+        $this->assertEquals(new Helicoptere(15,12,180),$player2->helicopteres[2]);
     }
 
     public function testCanTurnAllHelicoptersAtTheCorrectAngle() {
