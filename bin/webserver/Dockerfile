@@ -35,5 +35,3 @@ RUN pecl install xdebug-2.5.5 \
 
 # Enable apache modules
 RUN a2enmod rewrite headers
-
-ENTRYPOINT ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]

@@ -48,7 +48,7 @@
   max-height: 75vh;
   overflow: scroll;
   flex-direction: row;
-  flex-basis: 50%;
+  width: 50vw;
 }
 
 .w3-row > div {

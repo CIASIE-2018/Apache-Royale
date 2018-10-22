@@ -32,11 +32,12 @@ $app->get('/join',function () use ($twig){
 
     $g->showList();
     */
-
-    echo $twig->render('list.html');
+    $t = \apache\Model\ModelSalon::allSalon();
+    //echo $t[0]->id;
+    echo $twig->render('list.html', array('t' => $t));
 })->name("join");
 
-$app->get('/salon',function () use ($twig){
+$app->get('/salon/:id',function ($id) use ($twig){
     /*
     $g = new \apache\Controler\ControlerGeneral();
     $g->showGame();
