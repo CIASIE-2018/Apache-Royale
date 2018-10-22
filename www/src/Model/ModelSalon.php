@@ -10,12 +10,16 @@ class ModelSalon extends \Illuminate\Database\Eloquent\Model
 
     static function createRoom($name,$pass,$private){
         $room = new ModelSalon;
-        $room->name = $name;
+        $room->name = $name;   
         $room->pass = $pass;
         $room->private = $private;
         $room->player1 = $_COOKIE["PHPSESSID"];
         $room->save();
-        echo($room->id);
+        if($name == null){
+            $room->name = "Room-".$room->id;
+        }
+        $room->save();  
+       return $room->id;
     }
     
     static function getSalon($id){
