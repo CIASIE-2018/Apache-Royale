@@ -43,7 +43,8 @@ $app->get('/salon/:id',function ($id) use ($twig){
     $g = new \apache\Controler\ControlerGeneral();
     $g->showGame();
     */
-
+    $t = new \apache\Controller\ControllerSalon();
+    $t->rejoindreSalon($id);
     echo $twig->render('salon.html');
 })->name("salon");
 

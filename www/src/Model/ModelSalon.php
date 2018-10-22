@@ -31,6 +31,14 @@ class ModelSalon extends \Illuminate\Database\Eloquent\Model
         return $arr;
     }
 
+    static function JoinSalon($id){
+        $room = ModelSalon::getSalon($id);
+        if ($_COOKIE["PHPSESSID"]!=$room->player1){
+            $room->player2=$_COOKIE["PHPSESSID"];
+        }
+        $room->save();
+    }
+
     static function allSalon()
     {
         $salons=ModelSalon::all();

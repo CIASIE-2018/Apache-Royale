@@ -5,7 +5,7 @@ $app = new \Slim\Slim();
 
 class ControllerSalon{
 
-
+    private static $games;
     private $salon;
     function creerSalon($name,$pass,$private){
         $app = \Slim\Slim::getInstance();
@@ -18,7 +18,10 @@ class ControllerSalon{
     }
 
     function rejoindreSalon($id){
-        $app->redirect($app->urlFor('salon', array('id'=>$id)));
-        //$this->salon=\apache\Model\ModelSalon::getSalon($id);
+        $this->salon=\apache\Model\ModelSalon::JoinSalon($id);
+    }
+
+    static function setGame($position,$game){
+        self::$games[$position]= $game;
     }
 }
