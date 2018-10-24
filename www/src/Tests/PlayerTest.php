@@ -81,7 +81,25 @@ final class PlayerTest extends PHPUnit_Framework_TestCase{
     }
 
     public function testCanEndHisTurn() {
-        $this->assertTrue(false);
+        $player = new Player(true);
+        $this->assertEquals(false,$player->isTurnEnded());
+        $player->changeDirectionHelicopters(0,0,0);
+        $this->assertEquals(true,$player->turnFirstPartIsEnded);
+        $player->moveHelicopters(0,0,0);
+        $this->assertEquals(true,$player->turnSecondPartIsEnded);
+        $player->attackTargets(null,null,null);
+        $this->assertEquals(true,$player->turnThirdPartIsEnded);
+        $this->assertEquals(true,$player->isTurnEnded());
+    }
+
+    public function testCanStartANewTurn() {
+        $player = new Player(true);
+        $player->changeDirectionHelicopters(0,0,0);
+        $player->moveHelicopters(0,0,0);
+        $player->attackTargets(null,null,null);
+        $this->assertEquals(true,$player->isTurnEnded());
+        $player->newTurn();
+        $this->assertEquals(false,$player->isTurnEnded());
     }
 
     public function testCantDoActionsInTheWrongOrder() {

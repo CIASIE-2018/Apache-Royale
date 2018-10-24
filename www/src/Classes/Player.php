@@ -14,8 +14,14 @@ class Player {
 
     public $id;
     public $helicopteres;
+    public $turnFirstPartIsEnded;
+    public $turnSecondPartIsEnded;
+    public $turnThirdPartIsEnded;
 
     function __construct($isPlayer1) {
+        $this->turnFirstPartIsEnded=false;
+        $this->turnSecondPartIsEnded=false;
+        $this->turnThirdPartIsEnded=false;
         if(isset($_COOKIE['PHPSESSID'])){
             $this->id=$_COOKIE['PHPSESSID'];
         }       
@@ -34,6 +40,8 @@ class Player {
         $this->helicopteres[0]->changeDirection($angleH1);
         $this->helicopteres[1]->changeDirection($angleH2);
         $this->helicopteres[2]->changeDirection($angleH3);
+        //fin de la premiere partie du tour
+        $this->turnFirstPartIsEnded = true;
     }
 
     function moveHelicopters($distanceH1,$distanceH2,$distanceH3){
@@ -43,6 +51,8 @@ class Player {
         $this->helicopteres[0]->move($distanceH1);
         $this->helicopteres[1]->move($distanceH2);
         $this->helicopteres[2]->move($distanceH3);
+        //fin de la deuxieme partie du tour
+        $this->turnSecondPartIsEnded = true;
     }
 
     function attackTargets($targetH1,$targetH2,$targetH3){
@@ -62,6 +72,8 @@ class Player {
         }else{
             $reussites[2]='';
         }
+        //fin de la troisieme partie du tour
+        $this->turnThirdPartIsEnded = true;
         //
         return $reussites;
     }
@@ -124,6 +136,16 @@ class Player {
      */
     function checkRangeDiagonally($x1,$x2,$y1,$y2){
         return( ($x1 >= $x2) && ($y1 >= $y2) );
+    }
+
+    function isTurnEnded(){
+        return ($this->turnFirstPartIsEnded && $this->turnSecondPartIsEnded && $this->turnThirdPartIsEnded);
+    }
+
+    function newTurn() {
+        $this->turnFirstPartIsEnded = false;
+        $this->turnSecondPartIsEnded = false;
+        $this->turnThirdPartIsEnded = false;
     }
 
 }
