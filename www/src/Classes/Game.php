@@ -12,11 +12,12 @@ class Game {
         
     }
 
-    function addPlayer($player) {
+    /** dans constructeur player boolean qui indique au joueur si il sera player1 */
+    function addPlayer() {
         if(sizeof($this->players)>=2){
             throw new AlreadyTwoPlayersException();
         } 
-        $this->players[]=$player;
+        $this->players[]=new Player($this->players->length==0);
     }
 
     function isPlayer1($player) {

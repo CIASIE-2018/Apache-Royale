@@ -13,15 +13,12 @@ class TargetNotInRangeException extends \Exception{}
 class Player {
 
     public $id;
-    public $game;
     public $helicopteres;
 
-    function __construct($game,$id) {
-        $this->game=$game;
-        $this->id=$id;
-        $this->game->addPlayer($this);
+    function __construct($isPlayer1) {
+        $this->id=$_COOKIE['PHPSESSID'];
         //si joueur 1 helico initialise en bas, sinon en haut du plateau
-        if($this->game->isPlayer1($this)){
+        if($isPlayer1){
             $this->helicopteres=[new Helicoptere(5,0,0),new Helicoptere(10,0,0),new Helicoptere(15,0,0)];
         }else{
             $this->helicopteres=[new Helicoptere(5,12,180),new Helicoptere(10,12,180),new Helicoptere(15,12,180)];
