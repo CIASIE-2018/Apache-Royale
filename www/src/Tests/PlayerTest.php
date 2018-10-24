@@ -11,23 +11,20 @@ final class PlayerTest extends PHPUnit_Framework_TestCase{
     }
 
     public function testIsInitializedWithTheCorrectParameters() {
-        $game = new Game();
-        $player = new Player($game,1);
-        $this->assertEquals(1,$player->id);
-        $this->assertEquals($game,$player->game);
+        $player = new Player(true);
         //check helicopters positions for player 1
         $this->assertEquals(new Helicoptere(5,0,0),$player->helicopteres[0]);
         $this->assertEquals(new Helicoptere(10,0,0),$player->helicopteres[1]);
         $this->assertEquals(new Helicoptere(15,0,0),$player->helicopteres[2]);
         //check helicopters positions for player 2
-        $player2 = new Player($game,2);
+        $player2 = new Player(false);
         $this->assertEquals(new Helicoptere(5,12,180),$player2->helicopteres[0]);
         $this->assertEquals(new Helicoptere(10,12,180),$player2->helicopteres[1]);
         $this->assertEquals(new Helicoptere(15,12,180),$player2->helicopteres[2]);
     }
 
     public function testCanTurnAllHelicoptersAtTheCorrectAngle() {
-        $player = new Player(new Game(),1);
+        $player = new Player(true);
         $player->changeDirectionHelicopters(45,-45,-90);
         $this->assertEquals(45,$player->helicopteres[0]->direction);
         $this->assertEquals(315,$player->helicopteres[1]->direction);
@@ -36,12 +33,15 @@ final class PlayerTest extends PHPUnit_Framework_TestCase{
 
     public function testCantTurnHelicoptersMoreThan90Degrees() {
         $this->setExpectedException(apache\Classes\TooLargeAngleException::class);
-        $player = new Player(new Game(),1);
+        $player = new Player(true);
         $player->changeDirectionHelicopters(180,-45,-90);
     }
 
     public function testCanMoveHelicoptersTheCorrectDistance() {
-        $player = new Player(new Game(),1);
+        $player = new Player(true);
+        //changedirections por l exception du tour
+        $player->changeDirectionHelicopters(0,0,0);
+        //
         $player->moveHelicopters(2,3,1);
         $this->assertEquals(2,$player->helicopteres[0]->y);
         $this->assertEquals(3,$player->helicopteres[1]->y);
@@ -53,24 +53,76 @@ final class PlayerTest extends PHPUnit_Framework_TestCase{
 
     public function testCantMoveHelicoptersFurtherThan3Units() {
         $this->setExpectedException(apache\Classes\InvalidDistanceException::class);
-        $player = new Player(new Game(),1);
+        $player = new Player(true);
+        //changedirections por l exception du tour
+        $player->changeDirectionHelicopters(0,0,0);
+        //
         $player->moveHelicopters(4,3,-1);
     }
 
-    public function testCanAttackTargets() {
-        $this->assertTrue(false);
+    public function testCanChooseTargets() {
+        $attacker = new Player(true);
+        $target = new Player(false);
+        $res = $attacker->chooseTarget($attacker->helicopteres[0],$target->helicopteres[0]);
+        $this->assertEquals($attacker->helicopteres[0],$res['attacker']);
+        $this->assertEquals($target->helicopteres[0],$res['target']);
     }
 
-    public function testCantAttackHelicoptersNotInFront() {
-        $this->assertTrue(false);
+    public function testCanChooseNotToAttack() {
+        $attacker = new Player(true);
+        $target = new Player(false);
+        //change directions et move por l exception du tour
+        $attacker->changeDirectionHelicopters(0,0,0);
+        $attacker->moveHelicopters(0,0,0);
+        //
+        $res = $attacker->attackTargets(null,$target->helicopteres[0],null);
+        $this->assertEquals('',$res[0]);
+        $this->assertEquals($attacker->helicopteres[1],$res[1]['attacker']);
+        $this->assertEquals('',$res[2]);
+    }
+
+    public function testCantAttackHelicoptersNotInRange() {
+        $this->setExpectedException(apache\Classes\TargetNotInRangeException::class);
+        $attacker = new Player(true);
+        $target = new Player(false);
+        //on l'oriente de maniere a ce que les helicos adverses ne soient pas a portee
+        $attacker->changeDirectionHelicopters(90,-90,0);
+        $attacker->attackTargets($target->helicopteres[1],$target->helicopteres[0],$target->helicopteres[2]);
     }
 
     public function testCanEndHisTurn() {
-        $this->assertTrue(false);
+        $player = new Player(true);
+        $this->assertEquals(false,$player->isTurnEnded());
+        $player->changeDirectionHelicopters(0,0,0);
+        $this->assertEquals(true,$player->turnFirstPartIsEnded);
+        $player->moveHelicopters(0,0,0);
+        $this->assertEquals(true,$player->turnSecondPartIsEnded);
+        $player->attackTargets(null,null,null);
+        $this->assertEquals(true,$player->turnThirdPartIsEnded);
+        $this->assertEquals(true,$player->isTurnEnded());
+    }
+
+    public function testCanStartANewTurn() {
+        $player = new Player(true);
+        $player->changeDirectionHelicopters(0,0,0);
+        $player->moveHelicopters(0,0,0);
+        $player->attackTargets(null,null,null);
+        $this->assertEquals(true,$player->isTurnEnded());
+        $player->newTurn();
+        $this->assertEquals(false,$player->isTurnEnded());
+    }
+
+    public function testCantDoSameActionTwiceInOneTurn() {
+        $this->setExpectedException(apache\Classes\CantRedoActionException::class);
+        $player = new Player(true);
+        $player->changeDirectionHelicopters(0,0,0);
+        $player->changeDirectionHelicopters(0,0,0);
     }
 
     public function testCantDoActionsInTheWrongOrder() {
-        $this->assertTrue(false);
+        $this->setExpectedException(apache\Classes\WrongOrderException::class);
+        $player = new Player(true);
+        $player->attackTargets(null,null,null);
     }
 
 }
