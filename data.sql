@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : mysql:3306
--- Généré le :  mer. 24 oct. 2018 à 07:10
+-- Généré le :  mer. 24 oct. 2018 à 09:47
 -- Version du serveur :  5.7.23
 -- Version de PHP :  7.2.8
 
@@ -21,8 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `apache-royale`
 --
-CREATE DATABASE IF NOT EXISTS `apache-royale` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `apache-royale`;
 
 -- --------------------------------------------------------
 
@@ -30,14 +28,10 @@ USE `apache-royale`;
 -- Structure de la table `Game`
 --
 
-DROP TABLE IF EXISTS `Game`;
-CREATE TABLE IF NOT EXISTS `Game` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `p1` int(255) NOT NULL,
-  `p2` int(255) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `player1` (`p1`),
-  KEY `player2` (`p2`)
+CREATE TABLE `Game` (
+  `id` int(11) NOT NULL,
+  `p1` varchar(255) DEFAULT NULL,
+  `p2` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -46,14 +40,12 @@ CREATE TABLE IF NOT EXISTS `Game` (
 -- Structure de la table `Helico`
 --
 
-DROP TABLE IF EXISTS `Helico`;
-CREATE TABLE IF NOT EXISTS `Helico` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `Helico` (
+  `id` int(11) NOT NULL,
   `x` int(2) NOT NULL,
   `y` int(2) NOT NULL,
   `z` int(2) NOT NULL,
-  `direction` int(3) NOT NULL,
-  PRIMARY KEY (`id`)
+  `direction` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -62,16 +54,11 @@ CREATE TABLE IF NOT EXISTS `Helico` (
 -- Structure de la table `Player`
 --
 
-DROP TABLE IF EXISTS `Player`;
-CREATE TABLE IF NOT EXISTS `Player` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `Player` (
+  `id` varchar(255) NOT NULL,
   `H1` int(11) NOT NULL,
   `H2` int(11) NOT NULL,
-  `H3` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `heli1` (`H1`),
-  KEY `heli2` (`H2`),
-  KEY `heli3` (`H3`)
+  `H3` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -80,35 +67,78 @@ CREATE TABLE IF NOT EXISTS `Player` (
 -- Structure de la table `Salon`
 --
 
-DROP TABLE IF EXISTS `Salon`;
-CREATE TABLE IF NOT EXISTS `Salon` (
-  `id` int(50) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `Salon` (
+  `id` int(50) NOT NULL,
   `name` varchar(255) CHARACTER SET utf8 NOT NULL,
   `pass` varchar(255) CHARACTER SET utf8 NOT NULL,
   `private` tinyint(1) NOT NULL,
+  `game` int(11) NOT NULL,
   `player1` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `player2` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `player2` varchar(255) CHARACTER SET utf8 DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Index pour les tables déchargées
+--
+
+--
+-- Index pour la table `Game`
+--
+ALTER TABLE `Game`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `player1` (`p1`),
+  ADD KEY `player2` (`p2`);
+
+--
+-- Index pour la table `Helico`
+--
+ALTER TABLE `Helico`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `Player`
+--
+ALTER TABLE `Player`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `Salon`
+--
+ALTER TABLE `Salon`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `contrainte1` (`game`);
+
+--
+-- AUTO_INCREMENT pour les tables déchargées
+--
+
+--
+-- AUTO_INCREMENT pour la table `Game`
+--
+ALTER TABLE `Game`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT pour la table `Helico`
+--
+ALTER TABLE `Helico`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+
+--
+-- AUTO_INCREMENT pour la table `Salon`
+--
+ALTER TABLE `Salon`
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Contraintes pour les tables déchargées
 --
 
 --
--- Contraintes pour la table `Game`
+-- Contraintes pour la table `Salon`
 --
-ALTER TABLE `Game`
-  ADD CONSTRAINT `player1` FOREIGN KEY (`p1`) REFERENCES `Player` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `player2` FOREIGN KEY (`p2`) REFERENCES `Player` (`id`) ON DELETE CASCADE;
-
---
--- Contraintes pour la table `Player`
---
-ALTER TABLE `Player`
-  ADD CONSTRAINT `heli1` FOREIGN KEY (`H1`) REFERENCES `Helico` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `heli2` FOREIGN KEY (`H2`) REFERENCES `Helico` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `heli3` FOREIGN KEY (`H3`) REFERENCES `Helico` (`id`) ON DELETE CASCADE;
+ALTER TABLE `Salon`
+  ADD CONSTRAINT `contrainte1` FOREIGN KEY (`game`) REFERENCES `Game` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
