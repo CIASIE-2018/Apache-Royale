@@ -39,6 +39,9 @@ final class PlayerTest extends PHPUnit_Framework_TestCase{
 
     public function testCanMoveHelicoptersTheCorrectDistance() {
         $player = new Player(true);
+        //changedirections por l exception du tour
+        $player->changeDirectionHelicopters(0,0,0);
+        //
         $player->moveHelicopters(2,3,1);
         $this->assertEquals(2,$player->helicopteres[0]->y);
         $this->assertEquals(3,$player->helicopteres[1]->y);
@@ -51,6 +54,9 @@ final class PlayerTest extends PHPUnit_Framework_TestCase{
     public function testCantMoveHelicoptersFurtherThan3Units() {
         $this->setExpectedException(apache\Classes\InvalidDistanceException::class);
         $player = new Player(true);
+        //changedirections por l exception du tour
+        $player->changeDirectionHelicopters(0,0,0);
+        //
         $player->moveHelicopters(4,3,-1);
     }
 
@@ -65,6 +71,10 @@ final class PlayerTest extends PHPUnit_Framework_TestCase{
     public function testCanChooseNotToAttack() {
         $attacker = new Player(true);
         $target = new Player(false);
+        //change directions et move por l exception du tour
+        $attacker->changeDirectionHelicopters(0,0,0);
+        $attacker->moveHelicopters(0,0,0);
+        //
         $res = $attacker->attackTargets(null,$target->helicopteres[0],null);
         $this->assertEquals('',$res[0]);
         $this->assertEquals($attacker->helicopteres[1],$res[1]['attacker']);
@@ -102,8 +112,17 @@ final class PlayerTest extends PHPUnit_Framework_TestCase{
         $this->assertEquals(false,$player->isTurnEnded());
     }
 
+    public function testCantDoSameActionTwiceInOneTurn() {
+        $this->setExpectedException(apache\Classes\CantRedoActionException::class);
+        $player = new Player(true);
+        $player->changeDirectionHelicopters(0,0,0);
+        $player->changeDirectionHelicopters(0,0,0);
+    }
+
     public function testCantDoActionsInTheWrongOrder() {
-        $this->assertTrue(false);
+        $this->setExpectedException(apache\Classes\WrongOrderException::class);
+        $player = new Player(true);
+        $player->attackTargets(null,null,null);
     }
 
 }

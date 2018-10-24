@@ -10,6 +10,10 @@ class InvalidDistanceException extends \Exception{}
 
 class TargetNotInRangeException extends \Exception{}
 
+class CantRedoActionException extends \Exception{}
+
+class WrongOrderException extends \Exception{}
+
 class Player {
 
     public $id;
@@ -34,6 +38,9 @@ class Player {
     }
 
     function changeDirectionHelicopters($angleH1,$angleH2,$angleH3){
+        if($this->turnFirstPartIsEnded){
+            throw new CantRedoActionException();
+        }
         if($angleH1>90 || $angleH2>90 || $angleH3>90 ||$angleH1<-90 || $angleH2<-90 || $angleH3<-90){
             throw new TooLargeAngleException();
         }
@@ -45,6 +52,12 @@ class Player {
     }
 
     function moveHelicopters($distanceH1,$distanceH2,$distanceH3){
+        if($this->turnSecondPartIsEnded){
+            throw new CantRedoActionException();
+        }
+        if(!$this->turnFirstPartIsEnded){
+            throw new WrongOrderException();
+        }
         if($distanceH1>3 || $distanceH2>3 || $distanceH3>3 ||$distanceH1<0 || $distanceH2<0 || $distanceH3<0){
             throw new InvalidDistanceException();
         }
@@ -57,6 +70,12 @@ class Player {
 
     function attackTargets($targetH1,$targetH2,$targetH3){
         // $reussites = tableau qui contient si les attaques ont réussies (Game infligera les degats) 
+        if($this->turnThirdPartIsEnded){
+            throw new CantRedoActionException();
+        }
+        if(!$this->turnFirstPartIsEnded && !$this->turnSecondPartIsEnded){
+            throw new WrongOrderException();
+        }
         if($targetH1 != null){
             $reussites[0]=$this->chooseTarget($this->helicopteres[0],$targetH1); 
         }else{
