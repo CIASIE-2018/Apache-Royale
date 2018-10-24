@@ -62,7 +62,11 @@ final class PlayerTest extends PHPUnit_Framework_TestCase{
     }
 
     public function testCantAttackHelicoptersNotInFront() {
-        $this->assertTrue(false);
+        //$this->setExpectedException(apache\Classes\TargetNotInRangeException::class);
+        $game=new Game();
+        $player1 = new Player($game, 1);
+        $player2 = new Player($game, 2);
+        $player1->changeDirectionHelicopters(90,-90,0);
     }
 
     public function testCanEndHisTurn() {

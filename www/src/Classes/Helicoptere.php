@@ -129,6 +129,8 @@ class Helicoptere {
         return $this->z == 0 ;
     }
 
+    /** return si l'attaque touche ou non (c'est Game qui s'occupe
+     * d'infliger les degats) */
     function attack($target){
         $jet = rand(1,6);
         return ($jet > $this->calculateOdds($target));
