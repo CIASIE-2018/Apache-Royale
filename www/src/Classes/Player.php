@@ -46,10 +46,73 @@ class Player {
         $this->helicopteres[2]->move($distanceH3);
     }
 
-    function chooseTargets($targetH1,$targetH2,$targetH3){
-        if(false){
+    function attackTargets($targetH1,$targetH2,$targetH3){
+        // $reussites = tableau qui contient si les attaques ont réussies (Game infligera les degats) 
+        $reussites[0]=$this->chooseTarget($this->helicopteres[0],$targetH1);
+        $reussites[1]=$this->chooseTarget($this->helicopteres[1],$targetH2);
+        $reussites[2]=$this->chooseTarget($this->helicopteres[2],$targetH3);
+        //
+        return $reussites;
+    }
+
+    /** renvoie un tableau decrivant l'attaquant, la cible et si l attaque a touche */
+    function chooseTarget($attacker,$target){
+        if(!($this->isInRange($attacker,$target))){
             throw new TargetNotInRangeException();
         }
+        return array('attacker'=>$attacker,'target'=>$target
+        ,'resultat'=>$attacker->attack($target));
+    }
+
+    function isInRange($attacker,$target){
+        $angle=($this->direction % 360);
+        switch ($angle) {
+            //si tout droit ou vers le bas pareil
+            case 0:
+            case 180:
+                return $this->checkRangeStraight($attacker,$target,'horizontal');
+            break;
+            //si vers la droite ou vers la geuche pareil
+            case 90:
+            case 270:
+                return $this->checkRangeStraight($attacker,$target,'vertical');
+            break;
+            //si diagonale haut droite
+            case 45:
+                return $this->checkRangeDiagonally($attacker->x,$target->x,$attacker->y,$target->y);
+            break;
+            //si diagonale bas droite
+            case 135:
+                return $this->checkRangeDiagonally($attacker->x,$target->x,$target->y,$attacker->y);
+            break;
+            //si diagonale bas gauche
+            case 225:
+                return $this->checkRangeDiagonally($target->x,$attacker->x,$target->y,$attacker->y);
+            break;
+            //si diagonale haut gauche
+            case 315:
+                return $this->checkRangeDiagonally($target->x,$attacker->x,$attacker->y,$target->y);
+            break;
+            default:
+                //
+            break;
+        }
+    }
+
+    /** return true si a portee */
+    function checkRangeStraight($attacker,$target,$direction){
+        if($direction=='horizontal'){
+            return (abs($target->y - $attacker->y)>=abs($target->x - $attacker->x));
+        }else{
+            return (abs($target->x - $attacker->x)>=abs($target->y - $attacker->y));
+        }
+    }
+
+    /** return true si a portee
+     * les parametres correspondent aux coordonnees a tester, qui dependent de lorientation de l'helico
+     */
+    function checkRangeDiagonally($x1,$x2,$y1,$y2){
+        return( ($x1 >= $x2) && ($y1 >= $y2) );
     }
 
 }
