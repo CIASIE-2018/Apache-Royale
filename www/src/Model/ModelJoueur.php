@@ -8,7 +8,9 @@ class ModelJoueur extends \Illuminate\Database\Eloquent\Model
     public $timestamps =false;
 
     function __construct($isPlayer1) {
-        $this->id=$_COOKIE['PHPSESSID'];
+        if(isset($_COOKIE['PHPSESSID'])){
+            $this->id=$_COOKIE['PHPSESSID'];
+        }    
         //si joueur 1 helico initialise en bas, sinon en haut du plateau
         if($isPlayer1){
             
