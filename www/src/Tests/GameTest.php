@@ -12,25 +12,24 @@ final class GameTest extends PHPUnit_Framework_TestCase{
 
     public function testCanAddPlayer(){
         $game=new Game();
-        $player=new Player($game,1);
-        $game->addPlayer($player);
-        $this->assertEquals($player,$game->players[0]);
+        $game->addPlayer();
+        $this->assertEquals(new Player(true),$game->players[0]);
     }
 
     public function testCantAddMoreThanTwoPlayers(){
         $this->setExpectedException(apache\Classes\AlreadyTwoPlayersException::class);
         $game=new Game();
-        $game->addPlayer(new Player($game,1));
-        $game->addPlayer(new Player($game,2));
-        $game->addPlayer(new Player($game,3));
+        $game->addPlayer();
+        $game->addPlayer();
+        $game->addPlayer();
     }
 
     public function testCanRecognizePlayer1(){
         $game=new Game();
-        $player1=new Player($game,1);
-        $player2=new Player($game,2);
-        $this->assertTrue($game->isPlayer1($player1));
-        $this->assertEquals(false,$game->isPlayer1($player2));
+        $game->addPlayer();
+        $game->addPlayer();
+        $this->assertTrue($game->isPlayer1($game->players[0]));
+        $this->assertEquals(false,$game->isPlayer1($game->players[1]));
     }
 
 }
