@@ -7,12 +7,10 @@ class ModelJoueur extends \Illuminate\Database\Eloquent\Model
     protected $primaryKey = 'id';
     public $timestamps =false;
 
-    function __construct($game,$id) {
-        $this->game=$game;
-        $this->id=$id;
-        $this->game->addPlayer($this);
+    function __construct($isPlayer1) {
+        $this->id=$_COOKIE['PHPSESSID'];
         //si joueur 1 helico initialise en bas, sinon en haut du plateau
-        if($this->game->isPlayer1($this)){
+        if($isPlayer1){
             
             $this->h1 = new ModelHelicoptere(5,0,0);
             $this->h2 = new ModelHelicoptere(10,0,0);

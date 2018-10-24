@@ -10,7 +10,7 @@ class OutsideTheBoardException extends \Exception{}
 
 class ModelHelicoptere extends \Illuminate\Database\Eloquent\Model
 {
-    protected $table = 'Helicoptere';
+    protected $table = 'Helico';
     protected $primaryKey = 'id';
     public $timestamps =false;
 
