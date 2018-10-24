@@ -16,7 +16,9 @@ class Player {
     public $helicopteres;
 
     function __construct($isPlayer1) {
-        //$this->id=$_COOKIE[PHPSESSID];
+        if(isset($_COOKIE['PHPSESSID'])){
+            $this->id=$_COOKIE['PHPSESSID'];
+        }       
         //si joueur 1 helico initialise en bas, sinon en haut du plateau
         if($isPlayer1){
             $this->helicopteres=[new Helicoptere(5,0,0),new Helicoptere(10,0,0),new Helicoptere(15,0,0)];

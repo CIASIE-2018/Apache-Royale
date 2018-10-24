@@ -1,7 +1,5 @@
 <?php
 
-session_start();
-
 use apache\Classes\Player as Player;
 use apache\Classes\Game as Game;
 use apache\Classes\Helicoptere as Helicoptere;
