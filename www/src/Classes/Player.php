@@ -47,9 +47,21 @@ class Player {
 
     function attackTargets($targetH1,$targetH2,$targetH3){
         // $reussites = tableau qui contient si les attaques ont réussies (Game infligera les degats) 
-        $reussites[0]=$this->chooseTarget($this->helicopteres[0],$targetH1);
-        $reussites[1]=$this->chooseTarget($this->helicopteres[1],$targetH2);
-        $reussites[2]=$this->chooseTarget($this->helicopteres[2],$targetH3);
+        if($targetH1 != null){
+            $reussites[0]=$this->chooseTarget($this->helicopteres[0],$targetH1); 
+        }else{
+            $reussites[0]='';
+        }
+        if($targetH2 != null){
+            $reussites[1]=$this->chooseTarget($this->helicopteres[1],$targetH2);
+        }else{
+            $reussites[1]='';
+        }
+        if($targetH3 != null){
+            $reussites[2]=$this->chooseTarget($this->helicopteres[2],$targetH3);
+        }else{
+            $reussites[2]='';
+        }
         //
         return $reussites;
     }
@@ -64,7 +76,7 @@ class Player {
     }
 
     function isInRange($attacker,$target){
-        $angle=($this->direction % 360);
+        $angle=($attacker->direction % 360);
         switch ($angle) {
             //si tout droit ou vers le bas pareil
             case 0:
