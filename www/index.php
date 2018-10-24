@@ -1,6 +1,8 @@
 <?php
 require_once 'vendor/autoload.php';
 
+use apache\Controller\ControllerSalon as CtrlSalon;
+use apache\Classes\Player as Player;
 session_start();
 
 $app = new \Slim\Slim();
@@ -39,13 +41,10 @@ $app->get('/join',function () use ($twig){
 })->name("join");
 
 $app->get('/salon/:id',function ($id) use ($twig){
-    /*
-    $g = new \apache\Controler\ControlerGeneral();
-    $g->showGame();
-    */
     $t = new \apache\Controller\ControllerSalon();
+    new \apache\Model\ModelGame();
     $t->rejoindreSalon($id);
-    echo $twig->render('salon.html');
+    echo $twig->render('salon.html', array('games' => CtrlSalon::getGame($id)));
 })->name("salon");
 
 $app->run();

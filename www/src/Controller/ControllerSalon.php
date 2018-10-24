@@ -5,7 +5,6 @@ $app = new \Slim\Slim();
 
 class ControllerSalon{
 
-    private static $games;
     private $salon;
     function creerSalon($name,$pass,$private){
         $app = \Slim\Slim::getInstance();
@@ -22,6 +21,10 @@ class ControllerSalon{
     }
 
     static function setGame($position,$game){
-        self::$games[$position]= $game;
+        
+    }
+
+    static function getGame($id) {
+        
     }
 }
