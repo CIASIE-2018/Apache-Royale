@@ -11,7 +11,7 @@ class ControllerSalon{
         if($private==null) $private = false;
         else $private = true;
         
-     $this->salon=\apache\Model\ModelSalon::CreateRoom($name,$pass,$private);;
+     $this->salon=\apache\Model\ModelSalon::CreateRoom($name,$pass,$private);
      $app->redirect($app->urlFor('salon', array('id'=>$this->salon)));
 
     }

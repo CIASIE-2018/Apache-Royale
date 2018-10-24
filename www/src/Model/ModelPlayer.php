@@ -1,9 +1,9 @@
 <?php
 namespace apache\Model;
 
-class ModelJoueur extends \Illuminate\Database\Eloquent\Model
+class ModelPlayer extends \Illuminate\Database\Eloquent\Model
 {
-    protected $table = 'Joueur';
+    protected $table = 'Player';
     protected $primaryKey = 'id';
     public $timestamps =false;
 
@@ -14,23 +14,30 @@ class ModelJoueur extends \Illuminate\Database\Eloquent\Model
         //si joueur 1 helico initialise en bas, sinon en haut du plateau
         if($isPlayer1){
             
-            $this->h1 = new ModelHelicoptere(5,0,0);
-            $this->h2 = new ModelHelicoptere(10,0,0);
-            $this->h3 = new ModelHelicoptere(15,0,0);
+           $h1= new ModelHelicoptere(5,0,0);
+            $h2 = new ModelHelicoptere(10,0,0);
+            $h3 = new ModelHelicoptere(15,0,0);
+            $this->H1=$h1->id;
+            $this->H2=$h2->id;
+            $this->H3=$h3->id;
         }else{
-            $this->h1 = new ModelHelicoptere(5,12,180);
-            $this->h2 = new ModelHelicoptere(10,12,180);
-            $this->h3 = new ModelHelicoptere(15,12,180);
+            $h1= new ModelHelicoptere(5,12,180);
+            $h2 = new ModelHelicoptere(10,12,180);
+            $h3 = new ModelHelicoptere(15,12,180);
+            $this->H1=$h1->id;
+            $this->H2=$h2->id;
+            $this->H3=$h3->id;
+         
         }
-        $this->save();
+        $this->save();  
     }
     function changeDirectionHelicopters($angleH1,$angleH2,$angleH3){
         if($angleH1>90 || $angleH2>90 || $angleH3>90 ||$angleH1<-90 || $angleH2<-90 || $angleH3<-90){
             throw new TooLargeAngleException();
         }
-        $h1 = ModelHelicoptere::getHelicoptere($this->h1);
-        $h2 = ModelHelicoptere::getHelicoptere($this->h2);
-        $h3 = ModelHelicoptere::getHelicoptere($this->h3);
+        $h1 = ModelHelicoptere::getHelicoptere($this->H1);
+        $h2 = ModelHelicoptere::getHelicoptere($this->H2);
+        $h3 = ModelHelicoptere::getHelicoptere($this->H3);
 
         $h1->changeDirection($angleH1);
         $h2->changeDirection($angleH2);
@@ -43,9 +50,9 @@ class ModelJoueur extends \Illuminate\Database\Eloquent\Model
             throw new InvalidDistanceException();
         }
 
-        $h1 = ModelHelicoptere::getHelicoptere($this->h1);
-        $h2 = ModelHelicoptere::getHelicoptere($this->h2);
-        $h3 = ModelHelicoptere::getHelicoptere($this->h3);
+        $h1 = ModelHelicoptere::getHelicoptere($this->H1);
+        $h2 = ModelHelicoptere::getHelicoptere($this->H2);
+        $h3 = ModelHelicoptere::getHelicoptere($this->H3);
 
         $h1->move($distanceH1);
         $h2->move($distanceH2);
@@ -60,10 +67,10 @@ class ModelJoueur extends \Illuminate\Database\Eloquent\Model
     }
 
     static function getPlayer($id){
-        $player=ModelJoueur::get();
-        foreach($play as $player){
-            if($player->id == $id)
-                $arr = $player;
+        $player=ModelPlayer::get();
+        foreach($player as $play){
+            if($play->id == $id)
+                $arr = $play;
         }
         return $arr;
     }

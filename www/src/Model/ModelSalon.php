@@ -13,6 +13,9 @@ class ModelSalon extends \Illuminate\Database\Eloquent\Model
         $room->name = $name;   
         $room->pass = $pass;
         $room->private = $private;
+        $game = new ModelGame();
+        $game->addPlayer();
+        $room->game= $game->id;
         $room->player1 = $_COOKIE["PHPSESSID"];
         $room->save();
         if($name == null){

@@ -8,13 +8,19 @@ class ModelGame extends \Illuminate\Database\Eloquent\Model
     public $timestamps =false;
 
     function addPlayer() {
-        if($this->p1!= null){
-            if($this->p2 != null){
-                throw new AlreadyTwoPlayersException();
-            } 
-            $this->p1 = new ModelPlayer(true);
+        if($this->p2 != null){
+            throw new AlreadyTwoPlayersException();
+        } 
+        if($this->p1== null){
+            $p1= new ModelPlayer(true);
+            
+            $this->p1 = $p1->id;
+        }else{
+            $p2=new ModelPlayer(false);
+            $this->p2= $p2->id;
         }
-        $this->p2=new ModelPlayer(false);
+        
+        $this->save();
     }
 
 

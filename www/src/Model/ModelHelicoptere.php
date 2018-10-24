@@ -20,7 +20,7 @@ class ModelHelicoptere extends \Illuminate\Database\Eloquent\Model
         $this->z=3;
         $this->direction = $direction;
         $this->save();
-        return $this->id;
+       
     }
 
     function move($distance) {
