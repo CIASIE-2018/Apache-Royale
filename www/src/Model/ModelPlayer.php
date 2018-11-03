@@ -25,11 +25,11 @@ class ModelPlayer extends \Illuminate\Database\Eloquent\Model
             $this->H3=$h3->id;
         }else{
             $h1= new ModelHelicoptere;
-            $h1->createHelicoptere(2,12,180);
+            $h1->createHelicoptere(2,11,180);
             $h2 = new ModelHelicoptere;
-            $h2->createHelicoptere(5,12,180);
+            $h2->createHelicoptere(5,11,180);
             $h3 = new ModelHelicoptere;
-            $h3->createHelicoptere(9,12,180);
+            $h3->createHelicoptere(9,11,180);
             $this->H1=$h1->id;
             $this->H2=$h2->id;
             $this->H3=$h3->id;

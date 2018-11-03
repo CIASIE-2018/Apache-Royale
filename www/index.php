@@ -53,7 +53,6 @@ $app->get('/salon/:id',function ($id) use ($twig){
         $app->redirect($app->urlFor('home'));
     }
     $t = new \apache\Controller\ControllerSalon();
-    new \apache\Model\ModelGame();
     $t->rejoindreSalon($id);
     echo $twig->render('salon.html', array('games' => CtrlSalon::getGame($id)));
 })->name("salon");

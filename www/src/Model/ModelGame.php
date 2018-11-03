@@ -14,12 +14,11 @@ class ModelGame extends \Illuminate\Database\Eloquent\Model
         if($this->p1== null){
             $p1= new ModelPlayer();
             $p1->createPlayer(true);
-            
-            $this->p1 = $p1->id;
+            $this->p1 = $_COOKIE['PHPSESSID'];
         }else{
             $p2=new ModelPlayer();
             $p2->createPlayer(false);
-            $this->p2= $p2->id;
+            $this->p2= $_COOKIE['PHPSESSID'];
         }
         
         $this->save();

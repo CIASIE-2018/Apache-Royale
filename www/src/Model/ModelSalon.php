@@ -26,18 +26,15 @@ class ModelSalon extends \Illuminate\Database\Eloquent\Model
     }
     
     static function getSalon($id){
-        $salons=ModelSalon::get();
-        foreach($salons as $salon){
-            if($salon->id == $id)
-                $arr = $salon;
-        }
-        return $arr;
+        return ModelSalon::where('id', '=', $id)->first();
     }
 
     static function JoinSalon($id){
         $room = ModelSalon::getSalon($id);
-        if ($_COOKIE["PHPSESSID"]!=$room->player1){
+        if ($_COOKIE["PHPSESSID"]!=$room->player1 && $room->player2 == null){
             $room->player2=$_COOKIE["PHPSESSID"];
+            $game=ModelGame::where('id', '=', $room->game)->first();
+            $game->addPlayer();
         }
         $room->save();
     }

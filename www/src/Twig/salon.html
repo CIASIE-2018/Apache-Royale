@@ -9,6 +9,11 @@
                 <img class="helico" src="../img/helico.png">
               {% endif %}
             {% endif %}
+            {% if i == games[2][0].x or i == games[2][1].x or i == games[2][2].x %}
+              {% if j == games[2][0].y or j == games[2][1].y or j == games[2][2].y %}
+                <img class="helico" src="../img/helico-bleu.png">
+              {% endif %}
+            {% endif %}
           </div>
         {% endfor %}
       {% endfor %}
