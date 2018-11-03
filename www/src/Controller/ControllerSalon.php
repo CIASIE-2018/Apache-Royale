@@ -31,7 +31,9 @@ class ControllerSalon{
         $game = [$g->p1, $g->p2];
         $h = \apache\Model\ModelPlayer::where('id', '=', $g->p1)->first();
         $helicoP1 = $h->getHelico();
-        $helicoP2 = (\apache\Model\ModelPlayer::getPlayer($g->p2))->getHelico();
+        if ($g->p2 != null) {
+            $helicoP2 = (\apache\Model\ModelPlayer::getPlayer($g->p2))->getHelico();
+        }
         return array($game, $helicoP1, $helicoP2);
     }
 }

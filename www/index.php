@@ -54,6 +54,9 @@ $app->get('/salon/:id',function ($id) use ($twig){
     }
     $t = new \apache\Controller\ControllerSalon();
     $t->rejoindreSalon($id);
+    if ((\apache\Model\ModelSalon::getSalon($id))->player2 == null) {
+        header("Refresh:5");
+    }
     echo $twig->render('salon.html', array('games' => CtrlSalon::getGame($id)));
 })->name("salon");
 
