@@ -1,7 +1,19 @@
 {{ include('header.html') }}
   <div class="w3-animate-opacity w3-text-white w3-myfont" style="display: flex">
     <div class="grille">
-      <div class=" "><img class="helico" src="../img/helico.png"></div>
+      {% for i in range(0, 11) %}
+        {% for j in range(0, 11) %}
+          <div class='{{i}},{{j}}'>
+            {% if i == games[1][0].x or i == games[1][1].x or i == games[1][2].x %}
+              {% if j == games[1][0].y or j == games[1][1].y or j == games[1][2].y %}
+                <img class="helico" src="../img/helico.png">
+              {% endif %}
+            {% endif %}
+          </div>
+        {% endfor %}
+      {% endfor %}
+      <!--
+      <div class=" "><img class="helico" src="../img/helico.png" style=""></div>
       <div class=" "><img class="helico" src="../img/helico-bleu.png"></div>
       <div class=" ">case</div>
       <div class=" ">case</div>
@@ -145,6 +157,7 @@
       <div class=" ">case</div>
       <div class=" ">case</div>
       <div class=" ">case</div>
+      -->
     </div>
     <div class="nav" style="flex-direction: columns; vertical-align: middle">
         <button class="prev">&uarr;</button>
@@ -156,8 +169,8 @@
         <button class="next">&darr;</button>
     </div>
     <div>
-      <span>{{games[0]}}</span>
-      <span>{{games[1]}}</span>
+      <span>{{games[0][0]}}</span>
+      <span>{{games[0][1]}}</span>
     </div>
   </div>
   {{ include('footer.html') }}

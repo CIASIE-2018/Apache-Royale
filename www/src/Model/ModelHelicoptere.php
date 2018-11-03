@@ -142,11 +142,6 @@ class ModelHelicoptere extends \Illuminate\Database\Eloquent\Model
     }
 
     static function getHelicoptere($id){
-        $helico=ModelHelicoptere::get();
-        foreach($helico as $heli){
-            if($heli->id == $id)
-                $arr = $heli;
-        }
-        return $arr;
+        $helico=ModelHelicoptere::where('id', '=', $id);
     }
 }

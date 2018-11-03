@@ -14,16 +14,16 @@ class ModelPlayer extends \Illuminate\Database\Eloquent\Model
         //si joueur 1 helico initialise en bas, sinon en haut du plateau
         if($isPlayer1){
             
-           $h1= new ModelHelicoptere(5,0,0);
-            $h2 = new ModelHelicoptere(10,0,0);
-            $h3 = new ModelHelicoptere(15,0,0);
+           $h1= new ModelHelicoptere(2,0,0);
+            $h2 = new ModelHelicoptere(5,0,0);
+            $h3 = new ModelHelicoptere(9,0,0);
             $this->H1=$h1->id;
             $this->H2=$h2->id;
             $this->H3=$h3->id;
         }else{
-            $h1= new ModelHelicoptere(5,12,180);
-            $h2 = new ModelHelicoptere(10,12,180);
-            $h3 = new ModelHelicoptere(15,12,180);
+            $h1= new ModelHelicoptere(2,11,180);
+            $h2 = new ModelHelicoptere(5,11,180);
+            $h3 = new ModelHelicoptere(9,11,180);
             $this->H1=$h1->id;
             $this->H2=$h2->id;
             $this->H3=$h3->id;
@@ -67,11 +67,14 @@ class ModelPlayer extends \Illuminate\Database\Eloquent\Model
     }
 
     static function getPlayer($id){
-        $player=ModelPlayer::get();
-        foreach($player as $play){
-            if($play->id == $id)
-                $arr = $play;
-        }
-        return $arr;
+        return ModelPlayer::where('id', '=', $id)->first();
+    }
+
+    function getHelico()
+    {
+        $helico1 = ModelHelicoptere::where('id', '=', $this->H1)->first();
+        $helico2 = ModelHelicoptere::where('id', '=', $this->H2)->first();
+        $helico3 = ModelHelicoptere::where('id', '=', $this->H3)->first();
+        return array($helico1, $helico2, $helico3);
     }
 }
