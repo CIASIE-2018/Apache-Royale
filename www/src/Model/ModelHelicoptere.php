@@ -14,7 +14,7 @@ class ModelHelicoptere extends \Illuminate\Database\Eloquent\Model
     protected $primaryKey = 'id';
     public $timestamps =false;
 
-    function __construct($posx,$posy,$direction){
+    function createHelicoptere($posx,$posy,$direction){
         $this->x=$posx; 
         $this->y=$posy;
         $this->z=3;

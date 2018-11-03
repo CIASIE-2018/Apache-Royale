@@ -12,11 +12,13 @@ class ModelGame extends \Illuminate\Database\Eloquent\Model
             throw new AlreadyTwoPlayersException();
         } 
         if($this->p1== null){
-            $p1= new ModelPlayer(true);
+            $p1= new ModelPlayer();
+            $p1->createPlayer(true);
             
             $this->p1 = $p1->id;
         }else{
-            $p2=new ModelPlayer(false);
+            $p2=new ModelPlayer();
+            $p2->createPlayer(false);
             $this->p2= $p2->id;
         }
         
