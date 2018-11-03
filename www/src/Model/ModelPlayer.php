@@ -7,23 +7,29 @@ class ModelPlayer extends \Illuminate\Database\Eloquent\Model
     protected $primaryKey = 'id';
     public $timestamps =false;
 
-    function __construct($isPlayer1) {
+    function createPlayer($isPlayer1) {
         if(isset($_COOKIE['PHPSESSID'])){
             $this->id=$_COOKIE['PHPSESSID'];
         }    
         //si joueur 1 helico initialise en bas, sinon en haut du plateau
         if($isPlayer1){
             
-           $h1= new ModelHelicoptere(5,0,0);
-            $h2 = new ModelHelicoptere(10,0,0);
-            $h3 = new ModelHelicoptere(15,0,0);
+            $h1= new ModelHelicoptere;
+            $h1->createHelicoptere(2,0,0);
+            $h2 = new ModelHelicoptere;
+            $h2->createHelicoptere(5,0,0);
+            $h3 = new ModelHelicoptere;
+            $h3->createHelicoptere(9,0,0);
             $this->H1=$h1->id;
             $this->H2=$h2->id;
             $this->H3=$h3->id;
         }else{
-            $h1= new ModelHelicoptere(5,12,180);
-            $h2 = new ModelHelicoptere(10,12,180);
-            $h3 = new ModelHelicoptere(15,12,180);
+            $h1= new ModelHelicoptere;
+            $h1->createHelicoptere(2,12,180);
+            $h2 = new ModelHelicoptere;
+            $h2->createHelicoptere(5,12,180);
+            $h3 = new ModelHelicoptere;
+            $h3->createHelicoptere(9,12,180);
             $this->H1=$h1->id;
             $this->H2=$h2->id;
             $this->H3=$h3->id;
