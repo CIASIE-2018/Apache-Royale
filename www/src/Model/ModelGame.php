@@ -23,5 +23,14 @@ class ModelGame extends \Illuminate\Database\Eloquent\Model
         $this->save();
     }
 
+    function getP1()
+    {
+        return $this->p1;
+    }
+
+    function getP2()
+    {
+        return $this->p2;
+    }
 
 }

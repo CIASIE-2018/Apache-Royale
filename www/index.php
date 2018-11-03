@@ -13,6 +13,9 @@ $twig = new Twig_Environment($loader, array(
 ));
 
 $app->get('/',function () use ($twig, $app){
+    if (!isset($_COOKIE['PHPSESSID'])) {
+        $app->redirect($app->urlFor('home'));
+    }
     /*
     $g = new \apache\Controler\ControlerGeneral();
     $g->showIndex();
@@ -21,8 +24,10 @@ $app->get('/',function () use ($twig, $app){
     echo $twig->render('index.html', array('join' => $app->urlFor('join')));
 })->name('home');
 
-$app->post('/',function () {
-
+$app->post('/',function () use ($app){
+    if (!isset($_COOKIE['PHPSESSID'])) {
+        $app->redirect($app->urlFor('home'));
+    }
     $g = new \apache\Controller\ControllerSalon();
     $g->creerSalon($_POST["name"],$_POST["pass"],$_POST["private"]);
     var_dump($g);
@@ -30,6 +35,9 @@ $app->post('/',function () {
 
 
 $app->get('/join',function () use ($twig){
+    if (!isset($_COOKIE['PHPSESSID'])) {
+        $app->redirect($app->urlFor('home'));
+    }
     /*
     $g = new \apache\Controler\ControlerGeneral();
 
@@ -41,6 +49,9 @@ $app->get('/join',function () use ($twig){
 })->name("join");
 
 $app->get('/salon/:id',function ($id) use ($twig){
+    if (!isset($_COOKIE['PHPSESSID'])) {
+        $app->redirect($app->urlFor('home'));
+    }
     $t = new \apache\Controller\ControllerSalon();
     new \apache\Model\ModelGame();
     $t->rejoindreSalon($id);

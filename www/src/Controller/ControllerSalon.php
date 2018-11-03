@@ -25,6 +25,10 @@ class ControllerSalon{
     }
 
     static function getGame($id) {
-        
+        $g = new \apache\Model\ModelGame();
+        $g = \apache\Model\ModelGame::where('id', '=', $id)->first();
+
+        $game = [$g->p1, $g->p2];
+        return $game;
     }
 }
