@@ -42,28 +42,34 @@ class ControllerSalon{
     
     static function moveHelico(array $move, $stage)
     {
+        $m = false;
+        $p=\apache\Model\ModelPlayer::getPlayer($_COOKIE["PHPSESSID"]);
         foreach ($move as $key => $value) {
             $h = \apache\Model\ModelHelicoptere::getHelicoptere($key);
             if ($value != 0) {
+                $m=true;
                 switch ($stage) {
                     case 1:
                         $h->move2($value);
-                        $p=\apache\Model\ModelPlayer::getPlayer($_COOKIE["PHPSESSID"]);
                         $p->stage=2;
-                        $p->save();
                         break;
                     case 2:
                         $cible = \apache\Model\ModelHelicoptere::getHelicoptere($value);
                         if($h->attack($cible)) {
                             $cible->takeDamage();
                         }
-                        $p=\apache\Model\ModelPlayer::getPlayer($_COOKIE["PHPSESSID"]);
                         $p->stage=1;
-                        $p->save();
                         break;
                 }
             }
-            
         }
+        if (!$m) {
+            if($p->stage == 1) {
+                $p->stage =2;
+            } else {
+                $p->stage = 1;
+            }
+        }
+        $p->save();
     }
 }
