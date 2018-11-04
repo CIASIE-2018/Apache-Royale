@@ -68,6 +68,7 @@ CREATE TABLE IF NOT EXISTS `Player` (
   `H1` int(11) NOT NULL,
   `H2` int(11) NOT NULL,
   `H3` int(11) NOT NULL,
+  `stage` int(1) DEFAULT 1,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
