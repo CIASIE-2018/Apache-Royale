@@ -60,4 +60,8 @@ $app->get('/salon/:id',function ($id) use ($twig){
     echo $twig->render('salon.html', array('games' => CtrlSalon::getGame($id)));
 })->name("salon");
 
+$app->get('/salon/:id', function($id) use ($twig) {
+    
+});
+
 $app->run();
