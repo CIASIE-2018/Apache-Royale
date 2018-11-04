@@ -3,7 +3,7 @@
     <div class="grille">
       {% for i in range(0, 11) %}
         {% for j in range(0, 11) %}
-          <div class='{{i}},{{j}}'>
+          <div class="case" id='{{i}},{{j}}'>
             {% for helico in games[1] %}
               {% if (i == helico.x or i == helico.x or i == helico.x) and helico.z == 3 %}
                 {% if j == helico.y or j == helico.y or j == helico.y %}
