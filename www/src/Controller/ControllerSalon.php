@@ -34,6 +34,7 @@ class ControllerSalon{
         if ($g->p2 != null) {
             $helicoP2 = (\apache\Model\ModelPlayer::getPlayer($g->p2))->getHelico();
         }
-        return array($game, $helicoP1, $helicoP2);
+        $sess=$_COOKIE['PHPSESSID'];
+        return array($game, $helicoP1, $helicoP2, $sess);
     }
 }
