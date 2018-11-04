@@ -9,10 +9,26 @@ for (let index = 0; index < 3; index++) {
     };
 }
 
-let cases = document.getElementsByClassName("case");
-for (let i = 0; i <cases.length; i++) {
-    cases.item(i).onclick = function () {
-        document.getElementById("v"+helicoactif).value=this.id;
-    };
-}
 
+switch (document.getElementById("stage")){
+    case 1 :
+            let cases = document.getElementsByClassName("case");
+        for (let i = 0; i <cases.length; i++) {
+            cases.item(i).onclick = function () {
+                document.getElementById("v"+helicoactif).value=this.id;
+            };
+        }
+    break;
+    case 2 :
+    let ennemies = document.getElementsByClassName("ennemie");
+    let enne;
+    for (let i = 0; i <ennemies.length; i++) {
+        cases.item(i).onclick = function () {
+            enne = this.id;
+        this.style.backgroundColor= ("red");
+            document.getElementById("v"+helicoactif).value=this.id;
+        };
+    }
+
+    break;
+}
