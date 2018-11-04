@@ -1,6 +1,6 @@
 MAKEFLAGS += --silent
 
-.PHONY: install
+.PHONY: install stop
 
 install: ## Install dependencies
 	docker-compose up -d
