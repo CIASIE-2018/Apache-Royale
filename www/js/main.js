@@ -2,8 +2,11 @@ let helico={};
 
 helico.modules = {};
 
-let heli = document.getElementsByClassName("playable");
+let helicos = document.getElementsByClassName("playable");
 
-heli.onclick = function(){
-    console.log("frfef")
-};
+for (let index = 0; index < 3; index++) {
+    helicos.item(index).onclick = function () {
+        console.log(this.id);
+    };
+}
+console.log(helicos);
