@@ -35,7 +35,8 @@ class ControllerSalon{
             $helicoP2 = (\apache\Model\ModelPlayer::getPlayer($g->p2))->getHelico();
         }
         $sess=$_COOKIE['PHPSESSID'];
-        return array($game, $helicoP1, $helicoP2, $sess);
+        $stage=\apache\Model\ModelPlayer::getPlayer($_COOKIE['PHPSESSID'])->stage;
+        return array($game, $helicoP1, $helicoP2, $sess, $stage);
     }
 
     
@@ -47,14 +48,18 @@ class ControllerSalon{
                 switch ($stage) {
                     case 1:
                         $h->move2($value);
-                        (\apache\Model\ModelPlayer::getPlayer($_COOKIE[PHPSESSID])->stage=2)->save();
+                        $p=\apache\Model\ModelPlayer::getPlayer($_COOKIE["PHPSESSID"]);
+                        $p->stage=2;
+                        $p->save();
                         break;
                     case 2:
                         $cible = \apache\Model\ModelHelicoptere::getHelicoptere($value);
                         if($h->attack($cible)) {
                             $cible->takeDamage();
                         }
-                        (\apache\Model\ModelPlayer::getPlayer($_COOKIE[PHPSESSID])->stage=1)->save();
+                        $p=\apache\Model\ModelPlayer::getPlayer($_COOKIE["PHPSESSID"]);
+                        $p->stage=1;
+                        $p->save();
                         break;
                 }
             }
