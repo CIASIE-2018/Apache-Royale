@@ -5,14 +5,14 @@
         {% for j in range(0, 11) %}
           <div class='{{i}},{{j}}'>
             {% for helico in games[1] %}
-              {% if i == helico.x or i == helico.x or i == helico.x %}
+              {% if (i == helico.x or i == helico.x or i == helico.x) and helico.z == 3 %}
                 {% if j == helico.y or j == helico.y or j == helico.y %}
                   <img class="helico" id="{{helico.id}}" src="../img/helico.png">
                 {% endif %}
               {% endif %}
             {% endfor %}
             {% for helico in games[2] %}
-              {% if i == helico.x or i == helico.x or i == helico.x %}
+              {% if (i == helico.x or i == helico.x or i == helico.x) and helico.z == 3 %}
                 {% if j == helico.y or j == helico.y or j == helico.y %}
                   <img class="helico" id="{{helico.id}}" src="../img/helico-bleu.png">
                 {% endif %}

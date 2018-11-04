@@ -63,7 +63,6 @@ $app->get('/salon/:id',function ($id) use ($twig){
 $app->post('/salon/:id', function($id) use ($twig) {
     $arr = array($_POST['h1']=>$_POST['valeur1'], $_POST['h2']=>$_POST['valeur2'], $_POST['h3']=>$_POST['valeur3']);
     $stage=2;
-    var_dump($arr);
     CtrlSalon::moveHelico($arr, $stage);
     echo $twig->render('salon.html', array('games' => CtrlSalon::getGame($id)));
 });

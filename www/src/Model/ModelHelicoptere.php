@@ -97,6 +97,10 @@ class ModelHelicoptere extends \Illuminate\Database\Eloquent\Model
         $this->save();
     }
 
+    function atk($cible) {
+        
+    }
+
     function canMove($direction,$axis,$limit){
         if($direction=='up'){
             if($this->$axis >= $limit){

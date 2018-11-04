@@ -52,6 +52,10 @@ class ControllerSalon{
                     $h->move2($value);
                     break;
                 case 3:
+                    $cible = \apache\Model\ModelHelicoptere::getHelicoptere($value);
+                    if($h->attack($cible)) {
+                        $cible->takeDammage();
+                    }
                     break;
             }
         }
