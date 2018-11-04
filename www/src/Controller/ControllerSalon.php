@@ -46,16 +46,15 @@ class ControllerSalon{
             if ($value != 0) {
                 switch ($stage) {
                     case 1:
-                        
+                        $h->move2($value);
+                        (\apache\Model\ModelPlayer::getPlayer($_COOKIE[PHPSESSID])->stage=2)->save();
                         break;
                     case 2:
-                        $h->move2($value);
-                        break;
-                    case 3:
                         $cible = \apache\Model\ModelHelicoptere::getHelicoptere($value);
                         if($h->attack($cible)) {
                             $cible->takeDamage();
                         }
+                        (\apache\Model\ModelPlayer::getPlayer($_COOKIE[PHPSESSID])->stage=1)->save();
                         break;
                 }
             }

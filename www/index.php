@@ -63,6 +63,9 @@ $app->get('/salon/:id',function ($id) use ($twig){
 $app->post('/salon/:id', function($id) use ($twig) {
     $arr = array($_POST['h1']=>$_POST['valeur1'], $_POST['h2']=>$_POST['valeur2'], $_POST['h3']=>$_POST['valeur3']);
     CtrlSalon::moveHelico($arr, $_POST['stage']);
+    if (((\apache\Model\ModelPlayer::getPlayer($_COOKIE['PHPSESSID']))->stage != ((\apache\Model\ModelPlayer::getPlayer((\apache\Model\ModelSalon::getSalon($id))->player2)))->stage)) {
+        header("Refresh:5");
+    }
     echo $twig->render('salon.html', array('games' => CtrlSalon::getGame($id)));
 });
 
