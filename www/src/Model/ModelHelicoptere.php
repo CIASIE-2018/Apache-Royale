@@ -91,7 +91,10 @@ class ModelHelicoptere extends \Illuminate\Database\Eloquent\Model
     }
 
     function move2($pos) {
-        
+        $t = explode(',', $pos);
+        $this->x=$t[0];
+        $this->y=$t[1];
+        $this->save();
     }
 
     function canMove($direction,$axis,$limit){
@@ -146,6 +149,6 @@ class ModelHelicoptere extends \Illuminate\Database\Eloquent\Model
     }
 
     static function getHelicoptere($id){
-        $helico=ModelHelicoptere::where('id', '=', $id);
+        return ModelHelicoptere::where('id', '=', $id)->first();
     }
 }
