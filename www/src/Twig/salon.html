@@ -43,16 +43,31 @@
       <form method="POST">
         <input name="stage" value="1">
         <div>
-          <input name="h1">
-          <input name="valeur1" value="0">
+          {% if games[0][0] == games[3] %}
+            <input name="h1" value="{{games[1][0].id}}">
+            <input id="v{{games[1][0].id}}" name="valeur1" value="0">
+          {% else %}
+            <input name="h1" value="{{games[2][0].id}}">
+            <input id="v{{games[2][0].id}}" name="valeur1" value="0">
+          {% endif %}
         </div>
         <div>
-          <input name="h2" value="">
-          <input name="valeur2" value="0">
+          {% if games[0][0] == games[3] %}
+            <input name="h2" value="{{games[1][1].id}}">
+            <input id="v{{games[1][1].id}}" name="valeur2" value="0">
+          {% else %}
+            <input name="h2" value="{{games[2][0].id}}">
+            <input id="v{{games[2][1].id}}" name="valeur2" value="0">
+          {% endif %}
         </div>
         <div>
-          <input name="h3" value="">
-          <input name="valeur3" value="0">
+          {% if games[0][0] == games[3] %}
+            <input name="h3" value="{{games[1][2].id}}">
+            <input id="v{{games[1][2].id}}" name="valeur3" value="0">
+          {% else %}
+            <input name="h3" value="{{games[2][0].id}}">
+            <input id="v{{games[2][2].id}}" name="valeur3" value="0">
+          {% endif %}
         </div>
         <input type="submit">
       </form>
