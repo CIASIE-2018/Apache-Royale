@@ -7,14 +7,22 @@
             {% for helico in games[1] %}
               {% if (i == helico.x or i == helico.x or i == helico.x) and helico.z == 3 %}
                 {% if j == helico.y or j == helico.y or j == helico.y %}
-                  <img class="helico" id="{{helico.id}}" src="../img/helico.png">
+                  {% if games[0][0] == games[3] %}
+                    <img class="helico playable" id="{{helico.id}}" src="../img/helico.png">
+                  {% else %}
+                    <img class="helico ennemie" id="{{helico.id}}" src="../img/helico.png">
+                  {% endif %}
                 {% endif %}
               {% endif %}
             {% endfor %}
             {% for helico in games[2] %}
               {% if (i == helico.x or i == helico.x or i == helico.x) and helico.z == 3 %}
                 {% if j == helico.y or j == helico.y or j == helico.y %}
-                  <img class="helico" id="{{helico.id}}" src="../img/helico-bleu.png">
+                  {% if games[0][1] == games[3] %}
+                    <img class="helico playable" id="{{helico.id}}" src="../img/helico-bleu.png">
+                  {% else %}
+                    <img class="helico ennemie" id="{{helico.id}}" src="../img/helico-bleu.png">
+                  {% endif %}
                 {% endif %}
               {% endif %}
             {% endfor %}
