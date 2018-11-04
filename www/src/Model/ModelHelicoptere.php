@@ -90,6 +90,10 @@ class ModelHelicoptere extends \Illuminate\Database\Eloquent\Model
         $this->save();
     }
 
+    function move2($pos) {
+        
+    }
+
     function canMove($direction,$axis,$limit){
         if($direction=='up'){
             if($this->$axis >= $limit){

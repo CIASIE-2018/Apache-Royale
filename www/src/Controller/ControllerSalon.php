@@ -37,4 +37,23 @@ class ControllerSalon{
         $sess=$_COOKIE['PHPSESSID'];
         return array($game, $helicoP1, $helicoP2, $sess);
     }
+
+    
+    static function moveHelico(array $move, $stage)
+    {
+        foreach ($move as $key => $value) {
+            $h = \apache\Model\ModelHelicoptere::getHelicoptere($key);
+            switch ($stage) {
+                case 1:
+                    
+                    break;
+                
+                case 2:
+                    $h->move2($value);
+                    break;
+                case 3:
+                    break;
+            }
+        }
+    }
 }
