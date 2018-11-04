@@ -27,4 +27,5 @@ On pourra éventuellement ajouter d’autres fonctionnalités : gestion du carbu
 Diagramme de classes : https://www.lucidchart.com/invitations/accept/648f2497-0958-46fb-a6a5-98080d754c0b 
 
 Pour l'installation saisir en ligne de commande a la racine du projet : make install
+
 puis rendez-vous sur la page http://localhost ou pour Windows : 192.168.99.100
